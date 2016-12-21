@@ -6,7 +6,7 @@
     <h4>current umbrella</h4>
     <% if @umbrella.nil? %>
       <%= form_tag borrow_umbrellas_path, :method => :post do %>
-        <%= number_field_tag :id %>
+        <%= number_field_tag :umbrella_number %>
         <%= submit_tag "借雨傘" %>
       <% end %>
     <% else %>

@@ -6,5 +6,14 @@ Rails.application.routes.draw do
       post :borrow
     end
   end
+
+  namespace :admin do
+    resources :umbrellas
+    resources :stations do
+      collection do
+        post :return
+      end
+    end
+  end
   root to: "umbrellas#index"
 end

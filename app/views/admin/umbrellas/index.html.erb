@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <h1>Umbrella Current State</h1>
+    <h4>current state of all in-use umbrellas</h4>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">id</th>
+          <th class="text-center">location name</th>
+          <th class="text-center">雨傘數量</th>
+          <th class="text-center">更新時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @locations.each do |location| %>
+          <tr>
+            <td class="text-center"><%= location.id %></td>
+            <td><%= location.name %></td>
+            <td class="text-center"><%= location.umbrellas.size %></td>
+            <td><%= location.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">id</th>
+          <th class="text-center">user</th>
+          <th class="text-center">取用時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @umbrellas_in_renting.each do |u| %>
+          <tr>
+            <td class="text-center"><%= u.id %></td>
+            <td class="text-center"><%= u.umbrella_holder.email %></td>
+            <td><%= u.umbrella_holder.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">id</th>
+          <th class="text-center">station</th>
+          <th class="text-center">還回時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @umbrellas_in_station.each do |u| %>
+          <tr>
+            <td class="text-center"><%= u.id %></td>
+            <td class="text-center"><%= u.umbrella_holder.name %></td>
+            <td><%= u.umbrella_holder.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

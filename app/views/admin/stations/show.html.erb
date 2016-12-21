@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <h1>Station:<%= @station.name %></h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>進站時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @umbrellas.each do |umbrella| %>
+          <tr>
+            <td><%= umbrella.id %></td>
+            <td><%= umbrella.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form_tag return_admin_stations_path(:location_id => params[:id]), :method => :post do %>
+      <%= number_field_tag :umbrella_number %>
+      <%= submit_tag "歸還雨傘" %>
+    <% end %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">id</th>
+          <th class="text-center">歸還時間</th>
+          <th class="text-center">歸還人</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @umbrellas_in_this_station.each do |u| %>
+          <tr>
+            <td class="text-center"><%= u.id %></td>
+            <td class="text-center"><%= u.rent_histories.last.end_time %></td>
+            <td class="text-center"><%= u.rent_histories.last.user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

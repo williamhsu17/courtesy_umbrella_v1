@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <h1>umbrella history</h1>
+    <h4>umbrella renting history of umbrella <%= params[:id] %></h4>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">id</th>
+          <th class="text-center">time</th>
+          <th class="text-center">轉移來源</th>
+          <th class="text-center">轉移目標</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @umb_log.each do |u| %>
+          <tr>
+            <td class="text-center"><%= u.id %></td>
+            <td><%= u.try(:end_time) %></td>
+            <td><%= u.user.email %></td>
+            <td><%= u.end_location.try(:name) %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><%= u.id %></td>
+            <td><%= u.start_time %></td>
+            <td><%= u.start_location.name %></td>
+            <td><%= u.user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
