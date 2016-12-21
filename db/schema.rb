@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20161221144533) do
     t.datetime "updated_at",           null: false
     t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
     t.index ["location_id"], name: "index_umbrellas_on_location_id"
-    t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type", unique: true
+    t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
     t.index ["user_id"], name: "index_umbrellas_on_user_id"
   end
 

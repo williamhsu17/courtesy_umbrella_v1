@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Location.create!( :name => "Location00")
+Location.create!( :name => "Location01")
+Location.create!( :name => "Location02")
+Location.create!( :name => "Location03")
+Location.create!( :name => "Location04")
+
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)
+Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => 1)

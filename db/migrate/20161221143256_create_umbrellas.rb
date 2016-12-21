@@ -12,6 +12,6 @@ class CreateUmbrellas < ActiveRecord::Migration[5.0]
     add_index :umbrellas, :location_id
     add_index :umbrellas, :user_id
     add_index :umbrellas, :enterprise_id
-    add_index :umbrellas, [:umbrella_holder_id, :umbrella_holder_type], :unique => true
+    add_index :umbrellas, [:umbrella_holder_id, :umbrella_holder_type]
   end
 end
