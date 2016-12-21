@@ -1,0 +1,2 @@
+class RentHistory < ApplicationRecord
+end

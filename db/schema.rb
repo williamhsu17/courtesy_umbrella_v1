@@ -10,7 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221142457) do
+ActiveRecord::Schema.define(version: 20161221144533) do
+
+  create_table "enterprises", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "station"
+    t.integer  "exit_number"
+    t.integer  "longitude"
+    t.integer  "latitude"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["station"], name: "index_locations_on_station"
+  end
+
+  create_table "rent_histories", force: :cascade do |t|
+    t.integer  "umbrella_id"
+    t.integer  "user_id"
+    t.integer  "start_location_id"
+    t.datetime "start_time"
+    t.integer  "end_location_id"
+    t.datetime "end_time"
+    t.integer  "amount",            default: 0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["umbrella_id"], name: "index_rent_histories_on_umbrella_id"
+    t.index ["user_id"], name: "index_rent_histories_on_user_id"
+  end
+
+  create_table "umbrellas", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "user_id"
+    t.integer  "enterprise_id"
+    t.integer  "umbrella_holder_id"
+    t.string   "umbrella_holder_type"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
+    t.index ["location_id"], name: "index_umbrellas_on_location_id"
+    t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type", unique: true
+    t.index ["user_id"], name: "index_umbrellas_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
