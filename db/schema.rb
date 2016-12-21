@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221144533) do
+ActiveRecord::Schema.define(version: 20161221170549) do
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
@@ -46,17 +46,13 @@ ActiveRecord::Schema.define(version: 20161221144533) do
   end
 
   create_table "umbrellas", force: :cascade do |t|
-    t.integer  "location_id"
-    t.integer  "user_id"
     t.integer  "enterprise_id"
     t.integer  "umbrella_holder_id"
     t.string   "umbrella_holder_type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
-    t.index ["location_id"], name: "index_umbrellas_on_location_id"
     t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
-    t.index ["user_id"], name: "index_umbrellas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,6 +68,8 @@ ActiveRecord::Schema.define(version: 20161221144533) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "authentication_token"
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -15,5 +15,19 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+
+    post "login" => "auth#login"
+    post "logout" => "auth#logout"
+
+    resources :umbrellas do
+      collection do
+        post :borrow
+        post :return
+        get :list
+      end
+    end
+  end
   root to: "umbrellas#index"
 end
