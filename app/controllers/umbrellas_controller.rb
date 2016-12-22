@@ -17,6 +17,7 @@ class UmbrellasController < ApplicationController
     umb_log.user = umbrella.umbrella_holder
 
     if umbrella.save
+      umb_log.is_returned = true
       umb_log.save
     else
       puts "unable to change umbrella holder"

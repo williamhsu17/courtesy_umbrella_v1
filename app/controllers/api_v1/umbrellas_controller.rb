@@ -65,6 +65,7 @@ class ApiV1::UmbrellasController < ApiController
     umb_log.end_time = Time.now()
 
     if umbrella.save
+      umb_log.is_returned = true
       umb_log.save
       render :json => { :success => "umbrella returned" }, :status => 200
     else
