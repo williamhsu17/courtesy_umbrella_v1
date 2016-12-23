@@ -14,7 +14,7 @@ class RentHistory < ApplicationRecord
   validates :end_time, :presence => true, :if => :is_returned?
 
   def is_returned?
-    is_returned == true
+    is_returned
   end
 
 end

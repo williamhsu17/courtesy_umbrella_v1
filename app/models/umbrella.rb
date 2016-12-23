@@ -5,9 +5,23 @@ class Umbrella < ApplicationRecord
 
   has_many :rent_histories
 
-  validates :umbrella_holder_id, :uniqueness => true, :if => :holder_is_user?
+  scope :in_users, -> { where(:umbrella_holder_type => :User) }
+  scope :in_stations, -> { where(:umbrella_holder_type => :Location) }
 
-  def holder_is_user?
-    umbrella_holder_type == "User"
+  #validates :umbrella_holder_id, :uniqueness => true, :if => :holder_is_user?
+
+  #def holder_is_user?
+  #  umbrella_holder_type == "User"
+  #end
+  validate :umbrella_user_uniqueness, :if => :rent_to_user?
+
+  def umbrella_user_uniqueness
+    if self.umbrella_holder.umbrella.present?
+      errors.add(:base, "this user already rent an umbrella")
+    end
+  end
+
+  def rent_to_user?
+    self.umbrella_holder_type == "User"
   end
 end

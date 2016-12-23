@@ -9,20 +9,14 @@ class UmbrellasController < ApplicationController
   def borrow
     umbrella = Umbrella.find(params[:umbrella_number])
 
-    umb_log = umbrella.rent_histories.new
-    umb_log.start_location = umbrella.umbrella_holder
-    umb_log.start_time = Time.now()
+    status = current_user.borrow(umbrella)
 
-    umbrella.umbrella_holder = current_user
-    umb_log.user = umbrella.umbrella_holder
-
-    if umbrella.save
-      umb_log.is_returned = true
-      umb_log.save
-    else
+    if status == :success
+      redirect_to umbrellas_path
+    elsif status == :failed
+      # TODO
+    elsif status == :error
       puts "unable to change umbrella holder"
     end
-
-    redirect_to umbrellas_path
   end
 end

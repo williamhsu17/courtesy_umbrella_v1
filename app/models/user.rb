@@ -9,6 +9,27 @@ class User < ApplicationRecord
   has_one :umbrella, :as => :umbrella_holder
   has_many :rent_histories
 
+  def borrow(umbrella)
+    if self.umbrella
+      return :failed
+    end
+
+    umbrella_log = umbrella.rent_histories.new
+    umbrella_log.start_location = umbrella.umbrella_holder
+    umbrella_log.start_time = Time.now
+
+    umbrella.umbrella_holder = self
+    umbrella_log.user = self
+
+    if umbrella.save
+      umbrella_log.is_returned = false
+      umbrella_log.save!
+      return :success
+    else
+      return :error
+    end
+  end
+
   def generate_authentication_token
     self.authentication_token = Devise.friendly_token
     puts "generate authentication_token"

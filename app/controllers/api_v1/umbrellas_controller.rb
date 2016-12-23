@@ -1,5 +1,7 @@
 class ApiV1::UmbrellasController < ApiController
-  # before_action :authenticate_user!, :except => [:index, :list]
+
+  before_action :authenticate_user!, :except => [:index, :list]
+
   # before_action :authenticate_user!
   # skip_before_filter :verify_authenticity_token
 
@@ -19,7 +21,7 @@ class ApiV1::UmbrellasController < ApiController
   end
 
   def list
-    umbrella_rent_log = UmbrellaRentHistory.all
+    umbrella_rent_log = RentHistory.all
 
     station_time_log = {}
 
@@ -34,42 +36,27 @@ class ApiV1::UmbrellasController < ApiController
   end
 
   def borrow
-    if current_user
-      umbrella = Umbrella.find(params[:umbrella_number])
+    umbrella = Umbrella.find(params[:umbrella_number])
 
-      umb_log = umbrella.rent_histories.new
-      umb_log.start_location = umbrella.umbrella_holder
-      umb_log.start_time = Time.now()
+    status = user.borrow(umbrella)
 
-      umbrella.umbrella_holder = current_user
-      umb_log.user = umbrella.umbrella_holder
-
-      if umbrella.save
-        umb_log.save
-        render :json => { :success => "all is well" }, :status => 200
-      else
-        render :json => { :errors => umbrella.errors.full_messages }
-      end
+    if status == :success
+      render :json => { :success => "all is well" }
     else
-      render :json => { :errors => "you are not login" }
+      render :json => { :errors => umbrella.errors.full_messages }, :status => 400
     end
   end
 
   def return
     umbrella = Umbrella.find(params[:umbrella_number])
     current_location = Location.find(params[:location_id])
-    umbrella.umbrella_holder = current_location
 
-    umb_log = umbrella.rent_histories.last
-    umb_log.end_location = umbrella.umbrella_holder
-    umb_log.end_time = Time.now()
+    status = current_location.collect(umbrella)
 
-    if umbrella.save
-      umb_log.is_returned = true
-      umb_log.save
-      render :json => { :success => "umbrella returned" }, :status => 200
+    if status == :success
+      render :json => { :success => "umbrella returned" }
     else
-      render :json => { :errors => umbrella.errors.full_messages }
+      render :json => { :errors => umbrella.errors.full_messages }, :status => 400
     end
   end
 end

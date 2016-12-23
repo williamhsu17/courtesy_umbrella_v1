@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222015829) do
+ActiveRecord::Schema.define(version: 20161222130752) do
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 20161222015829) do
 
   create_table "umbrellas", force: :cascade do |t|
     t.integer  "enterprise_id"
-    t.integer  "umbrella_holder_id"
-    t.string   "umbrella_holder_type"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "umbrella_holder_id",   default: 1
+    t.string   "umbrella_holder_type", default: "Location"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
     t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
   end
