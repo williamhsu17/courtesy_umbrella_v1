@@ -8,7 +8,8 @@ class ApiV1::UmbrellasController < ApiController
   def index
     @umbrella = Umbrella.all
 
-    render :json => @umbrella, :except => [:created_at, :updated_at]
+    column_to_render = params[:field].try(:split, ",") || Umbrella.column_names
+    render :json => @umbrella, :only => column_to_render
   end
 
   def show
@@ -52,7 +53,7 @@ class ApiV1::UmbrellasController < ApiController
     status = current_user.borrow(umbrella)
 
     if status == :success
-      render :json => { :success => "all is well" }, :status => 200
+      render :json => { :success => "借傘成功" }, :status => 200
     else
       render :json => { :errors => umbrella.errors.full_messages }, :status => 403
     end
@@ -65,7 +66,7 @@ class ApiV1::UmbrellasController < ApiController
     status = current_location.collect(umbrella)
 
     if status == :success
-      render :json => { :success => "umbrella returned" }, :status => 200
+      render :json => { :success => "還傘成功" }, :status => 200
     else
       render :json => { :errors => umbrella.errors.full_messages }, :status => 400
     end
