@@ -17,7 +17,7 @@ class Umbrella < ApplicationRecord
 
   def umbrella_user_uniqueness
     if self.umbrella_holder.umbrella.present?
-      errors.add(:base, "this user already rent an umbrella")
+      errors.add(:message, "database doesn't allow one user to have two umbrella")
     end
   end
 

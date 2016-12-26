@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   def borrow(umbrella)
     if self.umbrella
+      umbrella.errors.add(:message, "this user already rent an umbrella")
       return :failed
     end
 

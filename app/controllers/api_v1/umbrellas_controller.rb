@@ -36,14 +36,25 @@ class ApiV1::UmbrellasController < ApiController
   end
 
   def borrow
-    umbrella = Umbrella.find(params[:umbrella_number])
-
-    status = user.borrow(umbrella)
+    if params[:umbrella_number].present?
+      umbrella = Umbrella.find(params[:umbrella_number])
+    else
+      if current_user.umbrella
+        render :json => { :borrow_status => 0,
+                          :dev_message => "This user has already borrow an umbrella",
+                          :user_message => "抱歉，您已經借出一隻雨傘了" } and return
+      else
+        render :json => { :borrow_status => 1,
+                          :dev_message => "This user can borrow an umbrella",
+                          :user_message => "您目前可以借傘"} and return
+      end
+    end
+    status = current_user.borrow(umbrella)
 
     if status == :success
-      render :json => { :success => "all is well" }
+      render :json => { :success => "all is well" }, :status => 200
     else
-      render :json => { :errors => umbrella.errors.full_messages }, :status => 400
+      render :json => { :errors => umbrella.errors.full_messages }, :status => 403
     end
   end
 
@@ -54,7 +65,7 @@ class ApiV1::UmbrellasController < ApiController
     status = current_location.collect(umbrella)
 
     if status == :success
-      render :json => { :success => "umbrella returned" }
+      render :json => { :success => "umbrella returned" }, :status => 200
     else
       render :json => { :errors => umbrella.errors.full_messages }, :status => 400
     end

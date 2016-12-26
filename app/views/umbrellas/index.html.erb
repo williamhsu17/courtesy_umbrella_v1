@@ -33,9 +33,9 @@
         <% @my_umb_log.each do |u| %>
           <tr>
             <td class="text-center"><%= u.id %></td>
-            <td><%= u.start_location.name %></td>
+            <td class="text-center"><%= u.start_location.name %></td>
             <td class="text-center"><%= distance_of_time_in_words(Time.now, u.start_time, include_seconds: true) %></td>
-            <td><%= u.end_location.try(:name) %></td>
+            <td class="text-center"><%= u.end_location.try(:name) %></td>
             <td class="text-center"><%= (distance_of_time_in_words(Time.now - u.end_time)) if u.end_time %></td>
             <td class="text-center"><%= (distance_of_time_in_words(u.end_time, u.start_time, include_seconds: true)) if u.end_time %></td>
             <td class="text-center"><%= u.amount %></td>

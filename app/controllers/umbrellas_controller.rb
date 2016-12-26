@@ -3,7 +3,7 @@ class UmbrellasController < ApplicationController
 
   def index
     @umbrella = current_user.umbrella
-    @my_umb_log = current_user.rent_histories.order("id DESC")
+    @my_umb_log = current_user.rent_histories.includes(:start_location, :end_location).order("id DESC")
   end
 
   def borrow
