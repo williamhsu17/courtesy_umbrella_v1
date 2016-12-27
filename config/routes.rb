@@ -29,5 +29,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
   root to: "umbrellas#index"
 end
