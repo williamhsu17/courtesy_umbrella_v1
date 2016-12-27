@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222130752) do
+ActiveRecord::Schema.define(version: 20161227122049) do
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "location_mrt_lineships", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "mrt_line_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_location_mrt_lineships_on_location_id"
+    t.index ["mrt_line_id"], name: "index_location_mrt_lineships_on_mrt_line_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -26,9 +35,18 @@ ActiveRecord::Schema.define(version: 20161222130752) do
     t.integer  "exit_number"
     t.integer  "longitude"
     t.integer  "latitude"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "station_number1"
+    t.string   "station_number2"
     t.index ["station"], name: "index_locations_on_station"
+  end
+
+  create_table "mrt_lines", force: :cascade do |t|
+    t.integer  "line_code"
+    t.string   "line_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rent_histories", force: :cascade do |t|
@@ -52,8 +70,12 @@ ActiveRecord::Schema.define(version: 20161222130752) do
     t.string   "umbrella_holder_type", default: "Location"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.text     "description"
+    t.integer  "umbrella_number"
+    t.integer  "rent_count",           default: 0
     t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
     t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
+    t.index ["umbrella_number"], name: "index_umbrellas_on_umbrella_number"
   end
 
   create_table "users", force: :cascade do |t|

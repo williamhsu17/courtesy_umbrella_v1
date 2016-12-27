@@ -5,20 +5,20 @@
     <li><%= link_to "分析" %></li>
     <li class="right">
       <p>
-        <%= link_to "#" do %> 
+        <%= link_to "#" do %>
         <span class="glyphicon btn-glyphicon glyphicon-user img-circle text-muted"></span>
         <% end %>
       </p>
     </li>
     <li class="right"><%= link_to "登出" %></li>
-  </ul> 
+  </ul>
 </nav>
 
 <div class="row">
   <div class= "col-md-1">
     <div class="sidebar">
       <li>
-        <%= link_to admin_stations_path do %> 
+        <%= link_to admin_stations_path do %>
           <table>
             <tr>
               <td width=20% class="button_icon"><span class="glyphicon glyphicon-map-marker"></span></td>
@@ -28,7 +28,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to admin_umbrellas_path do %> 
+        <%= link_to admin_umbrellas_path do %>
           <table>
             <tr>
               <td width=20% class="button_icon"><span class="glyphicon glyphicon-list-alt"></span></td>
@@ -38,7 +38,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to admin_users_path do %> 
+        <%= link_to admin_users_path do %>
           <table>
             <tr>
               <td width=20% class="button_icon"><span class="glyphicon glyphicon-search"></span></td>
@@ -51,19 +51,19 @@
   </div>
   <div class="station col-md-11">
     <div class="line-switch">
-      <li> <%= link_to "全線" %> </li> 
-      <li> <%= link_to "文湖線" %></p> </li> 
-      <li> <%= link_to "淡水信義線" %> </li> 
-      <li> <%= link_to "松山新店線" %> </li> 
-      <li> <%= link_to "中和新蘆線" %> </li> 
-      <li> <%= link_to "板南線" %> </li> 
-      <li> <%= link_to "借出中" %> </li> 
+      <li> <%= link_to "全線" %> </li>
+      <li> <%= link_to "文湖線" %></p> </li>
+      <li> <%= link_to "淡水信義線" %> </li>
+      <li> <%= link_to "松山新店線" %> </li>
+      <li> <%= link_to "中和新蘆線" %> </li>
+      <li> <%= link_to "板南線" %> </li>
+      <li> <%= link_to "借出中" %> </li>
     </div>
     <div class="data-editor col-md-12">
       <li class="right">
         <div>
           <p>
-            <%= link_to "#" do %> 
+            <%= link_to "#" do %>
             <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
             <% end %>
           </p>
@@ -72,13 +72,13 @@
       <li class="right">
         <div class="circle">
           <p>
-            <%= link_to "#" do %> 
+            <%= link_to "#" do %>
             <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
             <% end %>
           </p>
         </div>
       </li>
-      
+
     </div>
 
     <table id=umbrellas class=" table table-bordered col-md-11">
@@ -100,7 +100,7 @@
       <% @umbrellas.each do |umbrella|%>
         <tr>
           <td><%= umbrella.id %></td>
-          <td><%= umbrella.umbrella_holder.name %></td>
+          <td><%= umbrella.umbrella_holder.try(:name) %></td>
           <td></td>
           <td><%= umbrella.created_at %></td>
           <td></td>
@@ -124,7 +124,7 @@
 
 
 <style>
-  
+
 </style>
 
 

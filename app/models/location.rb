@@ -1,6 +1,9 @@
 class Location < ApplicationRecord
   has_many :umbrellas, :as => :umbrella_holder
 
+  has_many :location_mrt_lineships
+  has_many :mrt_lines, :through => :location_mrt_lineships, :source => "mrt_line"
+
   def collect(umbrella)
 
     umbrella.umbrella_holder = self
