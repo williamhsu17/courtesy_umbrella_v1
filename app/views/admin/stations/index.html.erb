@@ -17,7 +17,7 @@
   <div class= "col-md-1">
     <div class="sidebar">
       <li>
-        <%= link_to admin_locations_path do %> 
+        <%= link_to admin_stations_path do %> 
           <table>
             <tr>
               <td width=20% class="button_icon"><span class="glyphicon glyphicon-map-marker"></span></td>
@@ -64,7 +64,7 @@
           <canvas id="raining-percentage" width="60" height="60"></canvas>
           <div class="donut-inner">
             <p class="title">降雨機率</p>
-            <p class="value raining-percentage"> <%= @umbrellas.size%>%</p>
+            <p class="value raining-percentage"> 20% </p>
           </div>
         </div>
       </div>
@@ -80,272 +80,32 @@
       </div>
       <div class="chart-container col-md-4">
         <!-- <div class="chart-name">雨傘狀況</div> -->
-        <!-- <div class="doughnut-chart">
-          <canvas id="umbrella-status" width="60" height="60"></canvas>
-          <div class="donut-inner umbrella_status">
-            <p class="title">雨傘狀況</p>
-            <div class="status">
-             <table>
-               <tr>
-                 <td class="col-md-6" id="label">良好</td>
-                 <td class="col-md-6" id="label">中等</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6 right" id="value">20%</td>
-                 <td class="col-md-6 left" id="value">20%</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6" id="label">尚可</td>
-                 <td class="col-md-6" id="label">待替換</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6 right" id="value">50%</td>
-                 <td class="col-md-6 left" id="value">10%</td>
-               </tr>
-             </table>
-            </div>
-          </div>
-        </div> -->
         <div class="doughnut-chart">
           <canvas id="umbrella-status" width="60" height="60"></canvas>
-          <div class="donut-inner umbrella_status">
-            <p class="title">雨傘狀況</p>
-            <div class="status">
-             <table>
-               <tr>
-                 <td class="col-md-6 darkgreen" id="label">良好</td>
-                 <td class="col-md-6 lightgreen" id="label">中等</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6 right darkgreen" id="value">20%</td>
-                 <td class="col-md-6 left lightgreen" id="value">20%</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6 orange" id="label">尚可</td>
-                 <td class="col-md-6 red" id="label">待替換</td>
-               </tr>
-               <tr>
-                 <td class="col-md-6 right orange" id="value">50%</td>
-                 <td class="col-md-6 left red" id="value">10%</td>
-               </tr>
-             </table>
-            </div>
+          <div class="donut-inner">
+            <p class="title">待替換</p>
+            <p class="value rebalance"> 20% </p>
           </div>
         </div>
+      
       </div>
     </div>
     
     <div class="locations_flow">
-      <% @locations.each do |location| %><!--
+      <% @stations.each  do |station| %><!--
       --><div class="location_container">
         <div class="location_content">
           <div class="location_info">
-            <p class="location_id"> <%= location.id %>  </p>
-            <p class="location_name"> <%= location.name %>  </p>
-            <p class="location_description"> <%= location.description %>  </p>
+            <p class="location_id"> <%= station.id %> </p>
+            <p class="location_name"> <%= station.name %> </p>
             <div class="location_umbrella_number">
               <p>可租傘數： </p>
-              <p class="umbrella_number"> <%= location.umbrellas.size %>  </p>
+              <p class="umbrella_number"> <%= station.umbrellas.size %></p>
             </div>
           </div>
         </div>
        </div><!--
       --><% end %>
-      <div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> xxx  </p>
-            <p class="location_name"> ooo  </p>
-            <p class="location_description"> aaa  </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> 3  </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -356,8 +116,9 @@ var ctx1 = document.getElementById("raining-percentage");
 var ctx2 = document.getElementById("rebalance");
 var ctx3 = document.getElementById("umbrella-status");
 
-var rain_per = <%=@umbrellas.size%>
+var rain_per = 30
 var data1 = {
+      labels:['降雨機率','無'],
       datasets: [
       {
         data: [rain_per, 100-rain_per],
@@ -411,8 +172,10 @@ var data3 = {
 var chart1 = new Chart(ctx1, {
     type: 'doughnut',
     data: data1,
-    options:{cutoutPercentage:80},
-    legend:{display: false}
+    options:{cutoutPercentage:80,
+             legend:{display: false}
+    }
+    
 
 });
 var chart2 = new Chart(ctx2, {

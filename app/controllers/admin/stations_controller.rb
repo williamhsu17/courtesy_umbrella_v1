@@ -1,5 +1,8 @@
 class Admin::StationsController < ApplicationController
 
+  def index
+    @stations = Location.all
+  end
   def show
     @station = Location.find(params[:id])
     @umbrellas = @station.umbrellas
