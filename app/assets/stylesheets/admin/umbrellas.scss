@@ -1,3 +1,200 @@
-// Place all the styles related to the admin/umbrellas controller here.
+// Place all the styles related to the admin::umbrellas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+// 待解決: umbrella icon /  sidebar bgc / nav跟下面的空隙
+
+nav{
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+  background-color: #D8D8D8;
+  p{
+    margin: 0;
+  }
+  ul{
+    padding-left: 0;
+    display: inline-block;
+    margin-bottom: 0;
+    width: 100%;
+
+    li {
+      list-style: none;
+      float: left;
+      line-height: 60px;
+      width: 60px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 24px;
+      color: #9B9B9B;
+        
+        a{
+          margin-bottom: 0;
+          color: #9B9B9B;
+          text-decoration: none;
+        }
+
+        a:hover{
+          text-decoration: none;
+        }
+      
+
+    }
+    li.right {
+      float: right;
+      a{
+        font-size: 24px;
+      }
+
+    }
+ 
+  }
+
+}
+
+
+div{
+  li {
+    list-style: none;
+    float: left;
+    display: inline-block;
+  }
+  li.right {
+    float: right;
+  }
+}
+
+.clearfix{
+  clear: both;
+}
+
+.row{
+  margin: 0;
+   overflow: hidden;
+  .col-md-1{
+    padding: 0 5px 0 0;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+    background-color: #EFEFEF;
+    .sidebar{
+    font-size: 18px;
+    color: #EDECED;
+    right: 15px;
+    display: inline-block;
+    padding: 0;
+
+      li{
+        // margin-left: 25px;
+        text-align: center;
+        padding: 25px auto;
+        a{
+          text-decoration: none;
+          color: #4A4A4A;
+          padding: 0;
+          td.button_icon{
+            font-size: 34px;
+            // height: 75px;
+            padding: 15px 5px 15px 12px;
+            span{
+              padding: 10px 0;
+            }
+
+          }
+          td.button_text{
+            font-size: 18px;    
+            padding: 0 auto;      
+          }
+
+        }
+        a.hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  
+
+  .col-md-11{
+    padding: 0 20px 0 10px;
+    .line-switch{
+
+      display: inline-block;
+      
+      li{
+        margin: 20px 20px 0 0;
+        display: inline-block;
+        background-color: rgba(74,74,74,0.5);
+        border-radius: 10px;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+
+        a{
+          line-height: 40px;
+          font-size: 18px;
+          color: #FFFFFF;
+        }
+        a:hover{
+          text-decoration: none;
+        }
+      }
+
+    }
+
+    .data-editor{
+      display: inline-block;
+      padding: 0; 
+      li{
+        margin-left: 10px;
+      }
+    
+    }
+    table#umbrellas{
+      margin: 0; 
+      border: 1px solid black;
+      
+      th{
+        font-size: 14px;
+        line-height: 30px;
+        padding: 0;
+        text-align: center
+      }
+      th.remark, td.remark{
+        text-align: left;
+        padding-left: 8px;
+      }
+      td{
+        font-size: 14px;
+        padding: 0 8px;
+        text-align: center;
+        line-height: 28px;
+      }
+      
+    }
+  }
+}
+
+
+.station{
+  .circle{
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+
+    p{
+      font-size: 10px;
+      text-align: center;
+      line-height: 20px;
+      margin: 0;
+    } 
+  }
+}
+
+
+
+
+  

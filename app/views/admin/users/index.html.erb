@@ -84,65 +84,20 @@
     <table id=umbrellas class=" table table-bordered col-md-11">
       <thead>
         <tr>
-          <th width="5%">雨傘編號</th>
-          <th width="10%">目前所在位置</th>
-          <th width="10%">購買日期</th>
-          <th width="15%">系統登錄日期</th>
-          <th width="10%">已成功租借次數</th>
-          <th width="10%">已維修次數</th>
-          <th width="10%">傘況</th>
-          <th width="10%">最近一次出時間</th>
-          <th width="10%">使用者ID</th>
-          <th width="10%" class="remark">備註</th>
+          <th>id</th>
+          <th>user</th>
+          <th>取用時間</th>
         </tr>
       </thead>
       <tbody>
-      <% @umbrellas.each do |umbrella|%>
-        <tr>
-          <td><%= umbrella.id %></td>
-          <td><%= umbrella.umbrella_holder.name %></td>
-          <td></td>
-          <td><%= umbrella.created_at %></td>
-          <td></td>
-          <td>need a column!</td>
-          <td>need a column!</td>
-          <td></td>
-          <td><%= umbrella.umbrella_holder_id%></td>
-          <td class="remark">need a column!</td>
-        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+          </tr>
+        <% end %>
       </tbody>
-      <% end %>
     </table>
   </div>
 </div>
-
-
-==== paginate ====
-
-<h1>location trend</h1>
-<svg width="960" height="500"></svg>
-
-
-<style>
-  
-</style>
-
-
-<script>
-  var svg = d3.select("svg"),
-    margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = svg.attr("width") - margin.left - margin.right,
-    height = svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  var parseTime = d3.timeParse("%Y%m%d");
-
-  var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
-
-  var line = d3.line()
-    .curve(d3.curveBasis)
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.temperature); });
-</script>
