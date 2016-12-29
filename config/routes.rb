@@ -35,6 +35,10 @@ Rails.application.routes.draw do
         post :current_status
       end
     end
+    resources :stations do
+      collection do
+      end
+    end
   end
 
   root to: "umbrellas#index"
