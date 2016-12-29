@@ -1,7 +1,13 @@
 class Admin::StationsController < ApplicationController
-
+  layout "admin"
+  
   def index
-    @stations = Location.all
+    @stations = Location.includes(:umbrellas , :mrt_lines).all
+    if params[:line_number]
+    @stations = @stations.where( :mrt_lines => { :line_code =>  params[:line_number] } )
+    end
+    @stations = @stations.sort {|x,y| x.umbrellas.count <=> y.umbrellas.count }
+
   end
   def show
     @station = Location.find(params[:id])

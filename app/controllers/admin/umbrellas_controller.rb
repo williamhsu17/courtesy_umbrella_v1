@@ -1,11 +1,13 @@
 class Admin::UmbrellasController < ApplicationController
+  layout 'admin'
+
   def index
     @locations = Location.all
     @umbrellas = Umbrella.all
-
+    
     @umbrellas_in_renting = Umbrella.in_users
     @umbrellas_in_station = Umbrella.in_stations
-
+    
     umbrella_rent_log = RentHistory.all
 
     station_time_log = {}
