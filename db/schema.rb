@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227122049) do
+ActiveRecord::Schema.define(version: 20161229013447) do
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
@@ -71,11 +71,10 @@ ActiveRecord::Schema.define(version: 20161227122049) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "description"
-    t.integer  "umbrella_number"
     t.integer  "rent_count",           default: 0
+    t.string   "umbrella_number"
     t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
     t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
-    t.index ["umbrella_number"], name: "index_umbrellas_on_umbrella_number"
   end
 
   create_table "users", force: :cascade do |t|
