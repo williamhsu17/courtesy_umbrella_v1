@@ -1,61 +1,11 @@
-<nav class="admin_umbrellas">
-  <ul>
-    <li>icon</li>
-    <li><%= link_to "管理" %></li>
-    <li><%= link_to "分析" %></li>
-    <li class="right">
-      <p>
-        <%= link_to "#" do %> 
-        <span class="glyphicon btn-glyphicon glyphicon-user img-circle text-muted"></span>
-        <% end %>
-      </p>
-    </li>
-    <li class="right"><%= link_to "登出" %></li>
-  </ul> 
-</nav>
-<div class="row">
-  <div class= "col-md-1">
-    <div class="sidebar">
-      <li>
-        <%= link_to admin_stations_path do %> 
-          <table>
-            <tr>
-              <td width=20% class="button_icon"><span class="glyphicon glyphicon-map-marker"></span></td>
-              <td width=80% class="button_text">各站<br>資訊</td>
-            </tr>
-          </table>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to admin_umbrellas_path do %> 
-          <table>
-            <tr>
-              <td width=20% class="button_icon"><span class="glyphicon glyphicon-list-alt"></span></td>
-              <td width=80% class="button_text">雨傘<br>清單</td>
-            </tr>
-          </table>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to admin_users_path do %> 
-          <table>
-            <tr>
-              <td width=20% class="button_icon"><span class="glyphicon glyphicon-search"></span></td>
-              <td width=80% class="button_text">使用者<br>列表</td>
-            </tr>
-          </table>
-        <% end %>
-      </li>
-    </div>
-  </div>
-  <div class="station col-md-11">
+
     <div class="line-switch">
       <li> <%= link_to "全線" %> </li> 
-      <li> <%= link_to "文湖線" %></p> </li> 
-      <li> <%= link_to "淡水信義線" %> </li> 
-      <li> <%= link_to "松山新店線" %> </li> 
-      <li> <%= link_to "中和新蘆線" %> </li> 
-      <li> <%= link_to "板南線" %> </li> 
+      <li> <%= link_to "文湖線" , admin_stations_path(:line_number => '1') %></p> </li> 
+      <li> <%= link_to "淡水信義線" , admin_stations_path(:line_number => '2') %> </li> 
+      <li> <%= link_to "松山新店線" , admin_stations_path(:line_number => '3') %> </li> 
+      <li> <%= link_to "中和新蘆線" , admin_stations_path(:line_number => '4') %> </li> 
+      <li> <%= link_to "板南線" , admin_stations_path(:line_number => '5') %> </li> 
     </div>
     <div id="charts" class="col-md-12">
       <div class="chart-container col-md-4">
@@ -64,7 +14,7 @@
           <canvas id="raining-percentage" width="60" height="60"></canvas>
           <div class="donut-inner">
             <p class="title">降雨機率</p>
-            <p class="value raining-percentage"> 20% </p>
+            <p class="value raining-percentage"> 80% </p>
           </div>
         </div>
       </div>
@@ -74,7 +24,7 @@
           <canvas id="rebalance" width="60" height="60"></canvas>
           <div class="donut-inner">
             <p class="title">Rebalance</p>
-            <p class="value rebalance"> 40% </p>
+            <p class="value rebalance"> 60% </p>
           </div>
         </div>
       </div>
@@ -96,7 +46,7 @@
       --><div class="location_container">
         <div class="location_content">
           <div class="location_info">
-            <p class="location_id"> <%= station.id %> </p>
+            <p class="location_id"> <%= station.station_number1%><%= station.station_number2%> </p>
             <p class="location_name"> <%= station.name %> </p>
             <div class="location_umbrella_number">
               <p>可租傘數： </p>
@@ -108,7 +58,7 @@
       --><% end %>
     </div>
   </div>
-</div>
+
 
 
 <script>
@@ -116,7 +66,7 @@ var ctx1 = document.getElementById("raining-percentage");
 var ctx2 = document.getElementById("rebalance");
 var ctx3 = document.getElementById("umbrella-status");
 
-var rain_per = 30
+var rain_per = 80
 var data1 = {
       labels:['降雨機率','無'],
       datasets: [
@@ -137,7 +87,7 @@ var data2 = {
       // labels:['Rebalance'],
       datasets: [
       {
-        data: [40,60],
+        data: [60,40],
         backgroundColor: [
             "#7ED321",
             "#979797"

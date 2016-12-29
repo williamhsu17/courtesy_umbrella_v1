@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CourtesyUmbrellaV1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert].present? %>
+      <div class="alert alert-danger" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <nav class="admin_umbrellas">
+      <ul>
+        <li>icon</li>
+        <li><%= link_to "管理" %></li>
+        <li><%= link_to "分析" %></li>
+        <li class="right">
+          <p>
+            <%= link_to "#" do %> 
+            <span class="glyphicon btn-glyphicon glyphicon-user img-circle text-muted"></span>
+            <% end %>
+          </p>
+        </li>
+        <% if current_user %>
+        <li class="right">| <%= link_to('登出', destroy_user_session_path, :method => :delete) %> </li>
+        <li class="right password"> <%= link_to('修改密碼', edit_registration_path(:user)) %> </li>
+          <% else %>
+        <li class="right">| <%= link_to('註冊', new_registration_path(:user)) %> </li>
+        <li class="right"> <%= link_to('登入', new_session_path(:user)) %> </li>
+        <% end %>
+      </ul> 
+    </nav>
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class= "col-md-1">
+        <div class="sidebar">
+          <li>
+            <%= link_to admin_stations_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><span class="glyphicon glyphicon-map-marker"></span></td>
+                  <td width=80% class="button_text">各站<br>資訊</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_umbrellas_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><span class="glyphicon glyphicon-list-alt"></span></td>
+                  <td width=80% class="button_text">雨傘<br>清單</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_users_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><span class="glyphicon glyphicon-search"></span></td>
+                  <td width=80% class="button_text">使用者<br>列表</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
+        </div>
+      </div>
+      <div class="col-md-11">
+        <%= yield %>
+      </div>
+    </div>
+
+  </body>
+</html>

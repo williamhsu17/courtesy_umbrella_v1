@@ -39,9 +39,8 @@ nav{
         a:hover{
           text-decoration: none;
         }
-      
-
     }
+
     li.right {
       float: right;
       a{
@@ -49,7 +48,9 @@ nav{
       }
 
     }
- 
+    li.password{
+      width: 120px;
+    }
   }
 
 }
