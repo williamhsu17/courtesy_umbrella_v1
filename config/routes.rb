@@ -24,9 +24,15 @@ Rails.application.routes.draw do
 
     resources :umbrellas do
       collection do
+        post :current_status
         post :borrow
         post :return
         get :list
+      end
+    end
+    resources :user do
+      collection do
+        post :current_status
       end
     end
   end
