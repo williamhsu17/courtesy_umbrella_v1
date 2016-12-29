@@ -5,6 +5,14 @@
 
 
 // 待解決: umbrella icon /  sidebar bgc / nav跟下面的空隙
+.container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+body {
+  padding:0;
+}
 
 nav{
   display: inline-block;
@@ -19,7 +27,6 @@ nav{
     display: inline-block;
     margin-bottom: 0;
     width: 100%;
-
     li {
       list-style: none;
       float: left;
@@ -29,30 +36,19 @@ nav{
       text-decoration: none;
       font-size: 24px;
       color: #9B9B9B;
-        
-        a{
-          margin-bottom: 0;
-          color: #9B9B9B;
-          text-decoration: none;
-        }
-
-        a:hover{
-          text-decoration: none;
-        }
+      a{
+        margin-bottom: 0;
+        color: #9B9B9B;
+        text-decoration: none;
+      }
+      a:hover{ text-decoration: none; }
     }
-
     li.right {
       float: right;
-      a{
-        font-size: 24px;
-      }
-
+      a{ font-size: 24px; }
     }
-    li.password{
-      width: 120px;
-    }
+    li.password{ width: 120px; }
   }
-
 }
 
 
@@ -62,67 +58,55 @@ div{
     float: left;
     display: inline-block;
   }
-  li.right {
-    float: right;
-  }
+  li.right { float: right; }
 }
 
-.clearfix{
-  clear: both;
-}
+.clearfix{ clear: both; }
 
 .row{
   margin: 0;
-   overflow: hidden;
-  .col-md-1{
+  overflow: hidden;
+  .col-sidebar{
     padding: 0 5px 0 0;
     padding-bottom: 100%;
     margin-bottom: -100%;
     background-color: #EFEFEF;
     .sidebar{
-    font-size: 18px;
-    color: #EDECED;
-    right: 15px;
-    display: inline-block;
-    padding: 0;
-
-      li{
-        // margin-left: 25px;
-        text-align: center;
-        padding: 25px auto;
-        a{
-          text-decoration: none;
-          color: #4A4A4A;
-          padding: 0;
-          td.button_icon{
-            font-size: 34px;
-            // height: 75px;
-            padding: 15px 5px 15px 12px;
-            span{
-              padding: 10px 0;
+      font-size: 18px;
+      color: #EDECED;
+      right: 15px;
+      display: inline-block;
+      padding: 0;
+      ul{
+        padding-left: 20px;
+        li{
+          // margin-left: 25px;
+          text-align: center;
+          padding: 25px auto;
+          a{
+            text-decoration: none;
+            color: #4A4A4A;
+            padding: 0;
+            td.button_icon{
+              font-size: 34px;
+              // height: 75px;
+              padding: 15px 5px 15px 12px;
+              span{ padding: 10px 0; }
             }
-
+            td.button_text{
+              font-size: 18px;
+              padding: 0 auto;
+            }
           }
-          td.button_text{
-            font-size: 18px;    
-            padding: 0 auto;      
-          }
-
-        }
-        a.hover{
-          text-decoration: none;
+          a.hover{ text-decoration: none; }
         }
       }
     }
   }
-  
-
-  .col-md-11{
+  .col-main{
     padding: 0 20px 0 10px;
     .line-switch{
-
       display: inline-block;
-      
       li{
         margin: 20px 20px 0 0;
         display: inline-block;
@@ -138,25 +122,17 @@ div{
           font-size: 18px;
           color: #FFFFFF;
         }
-        a:hover{
-          text-decoration: none;
-        }
+        a:hover{ text-decoration: none; }
       }
-
     }
-
     .data-editor{
       display: inline-block;
-      padding: 0; 
-      li{
-        margin-left: 10px;
-      }
-    
+      padding: 0;
+      li{ margin-left: 10px; }
     }
     table#umbrellas{
-      margin: 0; 
+      margin: 0;
       border: 1px solid black;
-      
       th{
         font-size: 14px;
         line-height: 30px;
@@ -173,12 +149,9 @@ div{
         text-align: center;
         line-height: 28px;
       }
-      
     }
   }
 }
-
-
 .station{
   .circle{
     border-radius: 50%;
@@ -191,11 +164,11 @@ div{
       text-align: center;
       line-height: 20px;
       margin: 0;
-    } 
+    }
   }
 }
 
 
 
 
-  
+

@@ -1,94 +1,62 @@
 
-    <div class="line-switch">
-      <li> <%= link_to "全線" %> </li>
-      <li> <%= link_to "文湖線" %></p> </li>
-      <li> <%= link_to "淡水信義線" %> </li>
-      <li> <%= link_to "松山新店線" %> </li>
-      <li> <%= link_to "中和新蘆線" %> </li>
-      <li> <%= link_to "板南線" %> </li>
-      <li> <%= link_to "借出中" %> </li>
-    </div>
-    <div class="data-editor col-md-12">
-      <li class="right">
-        <div>
-          <p>
-            <%= link_to "#" do %>
-            <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
-            <% end %>
-          </p>
-        </div>
-      </li>
-      <li class="right">
-        <div class="circle">
-          <p>
-            <%= link_to "#" do %>
-            <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
-            <% end %>
-          </p>
-        </div>
-      </li>
-
-    </div>
-
-    <table id=umbrellas class=" table table-bordered col-md-11">
-      <thead>
-        <tr>
-          <th width="5%">雨傘編號</th>
-          <th width="10%">安全編碼</th>
-          <th width="10%">目前所在位置</th>
-          <th width="15%">系統登錄日期</th>
-          <th width="10%">已成功租借次數</th>
-
-          <th width="10%">傘況</th>
-          <th width="10%">最近一次出借時間</th>
-          <th width="10%">使用者ID</th>
-          <th width="10%" class="remark">備註</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @umbrellas.each do |umbrella|%>
-          <tr>
-            <td><%= sprintf '%06d', umbrella.id %></td>
-            <td><%= umbrella.umbrella_number %></td>
-            <td><%= umbrella.umbrella_holder.try(:name) %></td>
-            <td><%= umbrella.created_at %></td>
-            <td><%= umbrella.rent_count %></td>
-            <td><%= umbrella.rent_count %></td>
-            <td></td>
-            <td><%= umbrella.umbrella_holder_id%></td>
-            <td class="remark"></td>
-          </tr>
+<div class="col-md-12 line-switch">
+  <li> <%= link_to "全線" %> </li>
+  <li> <%= link_to "文湖線" %></p> </li>
+  <li> <%= link_to "淡水信義線" %> </li>
+  <li> <%= link_to "松山新店線" %> </li>
+  <li> <%= link_to "中和新蘆線" %> </li>
+  <li> <%= link_to "板南線" %> </li>
+  <li> <%= link_to "借出中" %> </li>
+</div>
+<div class="data-editor col-md-12">
+  <li class="right">
+    <div>
+      <p>
+        <%= link_to "#" do %>
+        <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
         <% end %>
-      </tbody>
-    </table>
+      </p>
+    </div>
+  </li>
+  <li class="right">
+    <div class="circle">
+      <p>
+        <%= link_to "#" do %>
+        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
+        <% end %>
+      </p>
+    </div>
+  </li>
+</div>
 
+<table id=umbrellas class=" table table-bordered col-md-12">
+  <thead>
+    <tr>
+      <th width="5%">雨傘<br>編號</th>
+      <th width="10%">安全<br>編碼</th>
+      <th width="10%">目前<br>所在位置</th>
+      <th width="15%">系統<br>登錄日期</th>
+      <th width="10%">租借次數</th>
 
-==== paginate ====
-
-<h1>location trend</h1>
-<svg width="960" height="500"></svg>
-
-
-<style>
-
-</style>
-
-
-<script>
-  var svg = d3.select("svg"),
-    margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = svg.attr("width") - margin.left - margin.right,
-    height = svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  var parseTime = d3.timeParse("%Y%m%d");
-
-  var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
-
-  var line = d3.line()
-    .curve(d3.curveBasis)
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.temperature); });
-</script>
+      <th width="10%">傘況</th>
+      <th width="10%">最近一次<br>出借時間</th>
+      <th width="10%">使用者ID</th>
+      <th width="10%" class="remark">備註</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @umbrellas.each do |umbrella|%>
+      <tr>
+        <td><%= sprintf '%06d', umbrella.id %></td>
+        <td><%= umbrella.umbrella_number %></td>
+        <td><%= umbrella.umbrella_holder.try(:name) %></td>
+        <td><%= umbrella.created_at %></td>
+        <td><%= umbrella.rent_count %></td>
+        <td><%= umbrella.rent_count %></td>
+        <td></td>
+        <td><%= umbrella.umbrella_holder_id%></td>
+        <td class="remark"></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
