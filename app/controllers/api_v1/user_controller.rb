@@ -16,5 +16,4 @@ class ApiV1::UserController < ApiController
       end
     end
   end
-
 end
