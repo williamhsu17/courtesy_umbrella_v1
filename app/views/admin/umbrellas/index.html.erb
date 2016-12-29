@@ -46,20 +46,20 @@
         </tr>
       </thead>
       <tbody>
-      <% @umbrellas.each do |umbrella|%>
-        <tr>
-          <td><%= sprintf '%06d', umbrella.id %></td>
-          <td><%= umbrella.umbrella_number %></td>
-          <td><%= umbrella.umbrella_holder.try(:name) %></td>
-          <td><%= umbrella.created_at %></td>
-          <td><%= umbrella.rent_count %></td>
-          <td><%= umbrella.rent_count %></td>
-          <td></td>
-          <td><%= umbrella.umbrella_holder_id%></td>
-          <td class="remark"></td>
-        </tr>
+        <% @umbrellas.each do |umbrella|%>
+          <tr>
+            <td><%= sprintf '%06d', umbrella.id %></td>
+            <td><%= umbrella.umbrella_number %></td>
+            <td><%= umbrella.umbrella_holder.try(:name) %></td>
+            <td><%= umbrella.created_at %></td>
+            <td><%= umbrella.rent_count %></td>
+            <td><%= umbrella.rent_count %></td>
+            <td></td>
+            <td><%= umbrella.umbrella_holder_id%></td>
+            <td class="remark"></td>
+          </tr>
+        <% end %>
       </tbody>
-      <% end %>
     </table>
 
 
