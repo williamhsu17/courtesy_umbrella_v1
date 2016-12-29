@@ -36,8 +36,8 @@
         <% @umbrellas_in_this_station.each do |u| %>
           <tr>
             <td class="text-center"><%= u.id %></td>
-            <td class="text-center"><%= u.rent_histories.last.end_time %></td>
-            <td class="text-center"><%= u.rent_histories.last.user.email %></td>
+            <td class="text-center"><%= u.rent_histories.last.try(:end_time) %></td>
+            <td class="text-center"><%= u.rent_histories.last.try(:user).try(:email) %></td>
           </tr>
         <% end %>
       </tbody>
