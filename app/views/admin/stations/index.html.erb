@@ -1,63 +1,64 @@
 
-    <div class="line-switch">
-      <li> <%= link_to "全線" %> </li> 
-      <li> <%= link_to "文湖線" , admin_stations_path(:line_number => '1') %></p> </li> 
-      <li> <%= link_to "淡水信義線" , admin_stations_path(:line_number => '2') %> </li> 
-      <li> <%= link_to "松山新店線" , admin_stations_path(:line_number => '3') %> </li> 
-      <li> <%= link_to "中和新蘆線" , admin_stations_path(:line_number => '4') %> </li> 
-      <li> <%= link_to "板南線" , admin_stations_path(:line_number => '5') %> </li> 
-    </div>
-    <div id="charts" class="col-md-12">
-      <div class="chart-container col-md-4">
-        <!-- <div class="chart-name">降雨機率</div> -->
-        <div class="doughnut-chart">
-          <canvas id="raining-percentage" width="60" height="60"></canvas>
-          <div class="donut-inner">
-            <p class="title">降雨機率</p>
-            <p class="value raining-percentage"> 80% </p>
-          </div>
-        </div>
+<div class="line-switch stations">
+  <li> <%= link_to "全線" %> </li> 
+  <li> <%= link_to "文湖線" , admin_stations_path(:line_number => '1') %></p> </li> 
+  <li> <%= link_to "淡水信義線" , admin_stations_path(:line_number => '2') %> </li> 
+  <li> <%= link_to "松山新店線" , admin_stations_path(:line_number => '3') %> </li> 
+  <li> <%= link_to "中和新蘆線" , admin_stations_path(:line_number => '4') %> </li> 
+  <li> <%= link_to "板南線" , admin_stations_path(:line_number => '5') %> </li> 
+</div>
+<div id="charts" class="col-md-12">
+  <div class="chart-container col-md-4">
+    <!-- <div class="chart-name">降雨機率</div> -->
+    <div class="doughnut-chart">
+      <canvas id="raining-percentage" width="60" height="60"></canvas>
+      <div class="donut-inner">
+        <p class="title raining-percentage">降雨機率</p>
+        <p class="value raining-percentage"> 80% </p>
       </div>
-      <div class="chart-container col-md-4">
-        <!-- <div class="chart-name">Rebalance</div> -->
-        <div class="doughnut-chart">
-          <canvas id="rebalance" width="60" height="60"></canvas>
-          <div class="donut-inner">
-            <p class="title">Rebalance</p>
-            <p class="value rebalance"> 60% </p>
-          </div>
-        </div>
-      </div>
-      <div class="chart-container col-md-4">
-        <!-- <div class="chart-name">雨傘狀況</div> -->
-        <div class="doughnut-chart">
-          <canvas id="umbrella-status" width="60" height="60"></canvas>
-          <div class="donut-inner">
-            <p class="title">待替換</p>
-            <p class="value rebalance"> 20% </p>
-          </div>
-        </div>
-      
-      </div>
-    </div>
-    
-    <div class="locations_flow">
-      <% @stations.each  do |station| %><!--
-      --><div class="location_container">
-        <div class="location_content">
-          <div class="location_info">
-            <p class="location_id"> <%= station.station_number1%><%= station.station_number2%> </p>
-            <p class="location_name"> <%= station.name %> </p>
-            <div class="location_umbrella_number">
-              <p>可租傘數： </p>
-              <p class="umbrella_number"> <%= station.umbrellas.size %></p>
-            </div>
-          </div>
-        </div>
-       </div><!--
-      --><% end %>
     </div>
   </div>
+  <div class="chart-container col-md-4">
+    <!-- <div class="chart-name">Rebalance</div> -->
+    <div class="doughnut-chart">
+      <canvas id="rebalance" width="60" height="60"></canvas>
+      <div class="donut-inner">
+        <p class="title rebalance"> Rebalance </p>
+        <p class="value rebalance"> <%= @stations_need_umbrellas_ratio %>% </p>
+      </div>
+    </div>
+  </div>
+  <div class="chart-container col-md-4">
+    <!-- <div class="chart-name">雨傘狀況</div> -->
+    <div class="doughnut-chart">
+      <canvas id="umbrella-status" width="60" height="60"></canvas>
+      <div class="donut-inner">
+        <p class="title umbrella-status">待替換</p>
+        <p class="value umbrella-status"> <%= @bad_umbrellas_percentage %>% </p>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<div class="locations_flow">
+  <% @stations_with_paginate.each do |station| %><!--
+  --><div class="location_container">
+    <div class="location_content">
+      <div class="location_info">
+        <p class="location_id"> <%= station.station_number1%><%= station.station_number2%> </p>
+        <p class="location_name"> <%= station.name %> </p>
+        <div class="location_umbrella_number">
+          <p>可租傘數： </p>
+          <p class="umbrella_number"> <%= station.umbrellas.size %></p>
+        </div>
+      </div>
+    </div>
+  </div><!--
+  --><% end %>
+</div>
+  <div class="paginate"><%= paginate @stations_with_paginate %></div>
+
 
 
 
@@ -65,57 +66,104 @@
 var ctx1 = document.getElementById("raining-percentage");
 var ctx2 = document.getElementById("rebalance");
 var ctx3 = document.getElementById("umbrella-status");
-
+//參數 from controller
 var rain_per = 80
+var a = <%= @bad_umbrellas_count %>;
+var b = <%= @good_umbrellas_count %>;
+var c = <%= @stations_need_umbrellas_ratio %> 
+var x = <%= @stations_need_umbrellas_count %>;
+var y = <%= @stations.size %> - x;
+var z = <%= @bad_umbrellas_percentage %>
+//顏色選擇
+var dark_green = "#417505"
+var light_green = "#7ED321"
+var orange = "#F6A623"
+var red = "#D0011B"
+//顏色顯色設定
+
+
+if ( rain_per < 25 ) {
+    color1 = dark_green
+  } else if ( rain_per >= 25 && rain_per < 50 ) {
+    color1 = light_green
+  } else if ( rain_per >= 50 && rain_per < 75 ) {
+    color1 = orange
+  } else { color1 = red }
+
+if ( c < 25 ) {
+    color2 = dark_green 
+  } else if ( c >= 25 && c < 50 ) {
+    color2 = light_green
+  } else if ( c >= 50 && c < 75 ) {
+    color2 = orange
+  } else { color2 = red}
+
+if ( z < 25 ) {
+    color3 = dark_green
+  } else if ( z >= 25 && z < 50 ) {
+    color3 = light_green
+  } else if ( z >= 50 && z < 75 ) {
+    color3 = orange
+  } else { color3 = red }
+
+// var chart_item = [c,z]
+// for (var i = 0; i < chart_item.length; i++){
+//   if ( chart_item[i] < 25 ) {
+//     color = dark_green
+//   } else if ( chart_item[i] >= 25 && chart_item[i] < 50 ) {
+//     color = light_green
+//   } else if ( chart_item[i] >= 50 && chart_item[i] < 75 ) {
+//     color = orange
+//   } else { color = red }
+//   color = color
+// }
+
 var data1 = {
-      labels:['降雨機率','無'],
+      labels:['降雨機率','none'],
       datasets: [
       {
         data: [rain_per, 100-rain_per],
         backgroundColor: [
-            "#F6A623",
+            color1,
             "#979797"
         ],
-        hoverBackgroundColor: [
-            "#FFD956",
-            "#CACACA"
-        ]
+        // hoverBackgroundColor: [
+        //     ,
+        //     "#CACACA"
+        // ]
       }]
 };
 
 var data2 = {
-      // labels:['Rebalance'],
+      labels:['MRT_need_umbrellas', 'none'],
+      
       datasets: [
       {
-        data: [60,40],
+        data: [x,y],
         backgroundColor: [
-            "#7ED321",
+            color2,
             "#979797"
         ],
-        hoverBackgroundColor: [
-            "#B1FF54",
-            "#CACACA"
-        ]
+        // hoverBackgroundColor: [
+        //     "#B1FF54",
+        //     "#CACACA"
+        // ]
       }]
 };
 
 var data3 = {
-      labels:['良好','中等','尚可','待替換'],
+      labels:['待替換','良好'],
       datasets: [
       {
-        data: [30,20,100,20],
+        data: [a,b],
         backgroundColor: [
-            "#417505",
-            "#7ED321",
-            "#F6A623",
-            "#D0011B"
+            color3,
+            "#979797"
         ],
-        hoverBackgroundColor: [
-            "#74A838",
-            "#B1FF54",
-            "#FFD956",
-            "#FF344E"
-        ]
+        // hoverBackgroundColor: [
+        //     "#B1FF54",
+        //     "#CACACA"
+        // ]
       }]
 };
 
@@ -131,9 +179,9 @@ var chart1 = new Chart(ctx1, {
 var chart2 = new Chart(ctx2, {
     type: 'doughnut',
     data: data2,
-    options:{cutoutPercentage:80},
-    legend:{display: false}
-
+    options:{cutoutPercentage:80,
+             legend:{display: false}
+    }
 });
 var chart3 = new Chart(ctx3, {
     type: 'doughnut',
@@ -143,12 +191,20 @@ var chart3 = new Chart(ctx3, {
       legend:{display: false}
     }
 });
+$('#raining-percentage').siblings('.donut-inner').children('p').css( "color", color1 );
+$('#rebalance').siblings('.donut-inner').children('p').css( "color", color2 );
+$('#umbrella-status').siblings('.donut-inner').children('p').css( "color", color3 );
 
 console.log(data3.datasets[0].data[0]);
+console.log(a);
+console.log(b);
+console.log(color1);
+console.log(color2);
+
+
+
 </script>
 
-
-===== paginate =====
 <script>
   $(document).ready(function() {
     //find all the p with nubmer of umbrellas

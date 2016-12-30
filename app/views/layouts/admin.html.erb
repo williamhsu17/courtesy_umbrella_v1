@@ -20,10 +20,10 @@
     <% end %>
     <nav class="admin_umbrellas">
       <ul>
-        <li>icon</li>
-        <li><%= link_to "管理" %></li>
+        <li><%= image_tag("Umbrella.png") %></li>
+        <li class="page_now"><%= link_to "管理" %></li>
         <li><%= link_to "分析" %></li>
-        <li class="right">
+        <li class="right icon">
           <p>
             <%= link_to "#" do %>
             <span class="glyphicon btn-glyphicon glyphicon-user img-circle text-muted"></span>
@@ -35,25 +35,55 @@
         <li class="right password"> <%= link_to('修改密碼', edit_registration_path(:user)) %> </li>
           <% else %>
         <li class="right">| <%= link_to('註冊', new_registration_path(:user)) %> </li>
-        <li class="right"> <%= link_to('登入', new_session_path(:user)) %> </li>
+        <li class="right log_in"> <%= link_to('登入', new_session_path(:user)) %> </li>
         <% end %>
       </ul>
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class= "col-md-2 col-sm-12 col-sidebar">
-          <div class="sidebar">
-            <ul>
-              <li><%= link_to " 各站資訊", admin_stations_path, :class => "glyphicon glyphicon-map-marker" %></li>
-              <li><%= link_to " 雨傘清單", admin_umbrellas_path, :class => "glyphicon glyphicon-list-alt" %></li>
-              <li><%= link_to " 使用者清單", admin_users_path, :class => "glyphicon glyphicon-search" %></li>
-            </ul>
-          </div>
+    <div class="row">
+      <div class= "col-md-1 col-sidebar">
+        <div class="sidebar">
+          <li>
+            <%= link_to admin_stations_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><span class="glyphicon glyphicon-map-marker"></span></td>
+                  <td width=80% class="button_text">各站<br>資訊</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_umbrellas_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><span class="glyphicon glyphicon-list-alt"></span></td>
+                  <td width=80% class="button_text">雨傘<br>清單</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_users_path do %> 
+              <table>
+                <tr>
+                  <td width=20% class="button_icon"><%= image_tag("User.png") %></td>
+                  <td width=80% class="button_text">使用者<br>列表</td>
+                </tr>
+              </table>
+            <% end %>
+          </li>
         </div>
-        <div class="col-md-10 col-sm-12 col-main">
-          <%= yield %>
-        </div>
+      </div>
+      <div class="col-md-11 col-main">
+        <%= yield %>
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  $('.side-bar li').click(function(){
+    $(this).addClass("hover");
+  });
+
+</script>
