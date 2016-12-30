@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       end
     end
     resources :user do
+      member do
+        get :show_history
+        get :show_last
+      end
       collection do
         post :current_status
       end

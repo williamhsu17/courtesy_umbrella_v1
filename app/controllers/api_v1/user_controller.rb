@@ -17,8 +17,12 @@ class ApiV1::UserController < ApiController
     end
   end
 
-  def show
-    @rent_histories = RentHistory.all
-    render :json => @rent_histories
+  def show_history
+    @rent_histories = RentHistory.includes(:start_location => :mrt_lines, :end_location => :mrt_lines).all
+    # render :json => @rent_histories
+  end
+
+  def show_last
+    @rent_history = RentHistory.includes(:start_location => :mrt_lines, :end_location => :mrt_lines).last
   end
 end
