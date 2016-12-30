@@ -10,6 +10,7 @@ class Location < ApplicationRecord
     umbrella_log = umbrella.rent_histories.last
     umbrella_log.end_location = self
     umbrella_log.end_time = Time.now
+    umbrella_log.amount_to_charge
 
     if umbrella.save
       umbrella_log.save!

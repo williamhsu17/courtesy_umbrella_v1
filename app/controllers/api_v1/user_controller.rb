@@ -16,4 +16,9 @@ class ApiV1::UserController < ApiController
       end
     end
   end
+
+  def show
+    @rent_histories = RentHistory.all
+    render :json => @rent_histories
+  end
 end

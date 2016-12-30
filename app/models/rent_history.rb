@@ -17,4 +17,19 @@ class RentHistory < ApplicationRecord
     is_returned
   end
 
+  def duration
+    duration = ((self.end_time - self.start_time) / 3600)
+  end
+
+  def amount_to_charge
+    duration = self.duration
+    if duration <= 8
+      self.amount = 10
+    elsif duration <= 24
+      self.amount = 20
+    else
+      self.amount = 30
+    end
+  end
+
 end
