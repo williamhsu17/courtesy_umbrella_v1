@@ -11,7 +11,6 @@ Umbrella.destroy_all
 MrtLine.destroy_all
 LocationMrtLineship.destroy_all
 
-Location.create!( :name => "儲存點")
 
 require 'csv'
 
@@ -27,6 +26,9 @@ csv.each do |row|
   l.save
 end
 
+Location.create!( :name => "雨傘倉庫")
+
+
 puts "There are now #{Location.count} rows in the locations table"
 
 MrtLine.create!( :line_code => "1" , :line_name => "文湖線")
@@ -36,47 +38,50 @@ MrtLine.create!( :line_code => "4" , :line_name => "中和新蘆線")
 MrtLine.create!( :line_code => "5" , :line_name => "板南線")
 puts "The MRT Lines have been created"
 
-for i in 2..25
+for i in 1..24
    LocationMrtLineship.create(:location => Location.find_by_id(i) , :mrt_line => MrtLine.find_by_id(1))
 end
-for i in 26..51
+for i in 25..50
    LocationMrtLineship.create(:location => Location.find_by_id(i) , :mrt_line => MrtLine.find_by_id(2))
 end
-for i in 52..65
+for i in 51..64
    LocationMrtLineship.create(:location => Location.find_by_id(i) , :mrt_line => MrtLine.find_by_id(3))
 end
-for i in 66..89
+for i in 65..88
    LocationMrtLineship.create(:location => Location.find_by_id(i) , :mrt_line => MrtLine.find_by_id(4))
 end
-for i in 90..107
+for i in 89..106
    LocationMrtLineship.create(:location => Location.find_by_id(i) , :mrt_line => MrtLine.find_by_id(5))
 end
 
-LocationMrtLineship.create(:location => Location.find_by_id(2) , :mrt_line => MrtLine.find_by_id(5))
-LocationMrtLineship.create(:location => Location.find_by_id(15) , :mrt_line => MrtLine.find_by_id(3))
-LocationMrtLineship.create(:location => Location.find_by_id(16) , :mrt_line => MrtLine.find_by_id(5))
-LocationMrtLineship.create(:location => Location.find_by_id(17) , :mrt_line => MrtLine.find_by_id(2))
-LocationMrtLineship.create(:location => Location.find_by_id(41) , :mrt_line => MrtLine.find_by_id(4))
-LocationMrtLineship.create(:location => Location.find_by_id(43) , :mrt_line => MrtLine.find_by_id(3))
-LocationMrtLineship.create(:location => Location.find_by_id(44) , :mrt_line => MrtLine.find_by_id(5))
-LocationMrtLineship.create(:location => Location.find_by_id(46) , :mrt_line => MrtLine.find_by_id(3))
-LocationMrtLineship.create(:location => Location.find_by_id(47) , :mrt_line => MrtLine.find_by_id(4))
-LocationMrtLineship.create(:location => Location.find_by_id(56) , :mrt_line => MrtLine.find_by_id(5))
-LocationMrtLineship.create(:location => Location.find_by_id(83) , :mrt_line => MrtLine.find_by_id(3))
-LocationMrtLineship.create(:location => Location.find_by_id(84) , :mrt_line => MrtLine.find_by_id(5))
-LocationMrtLineship.create(:location => Location.find_by_id(85) , :mrt_line => MrtLine.find_by_id(3))
+LocationMrtLineship.create(:location => Location.find_by_id(1) , :mrt_line => MrtLine.find_by_id(5))
+LocationMrtLineship.create(:location => Location.find_by_id(14) , :mrt_line => MrtLine.find_by_id(3))
+LocationMrtLineship.create(:location => Location.find_by_id(15) , :mrt_line => MrtLine.find_by_id(5))
+LocationMrtLineship.create(:location => Location.find_by_id(16) , :mrt_line => MrtLine.find_by_id(2))
+LocationMrtLineship.create(:location => Location.find_by_id(40) , :mrt_line => MrtLine.find_by_id(4))
+LocationMrtLineship.create(:location => Location.find_by_id(42) , :mrt_line => MrtLine.find_by_id(3))
+LocationMrtLineship.create(:location => Location.find_by_id(43) , :mrt_line => MrtLine.find_by_id(5))
+LocationMrtLineship.create(:location => Location.find_by_id(45) , :mrt_line => MrtLine.find_by_id(3))
+LocationMrtLineship.create(:location => Location.find_by_id(46) , :mrt_line => MrtLine.find_by_id(4))
+LocationMrtLineship.create(:location => Location.find_by_id(55) , :mrt_line => MrtLine.find_by_id(5))
+LocationMrtLineship.create(:location => Location.find_by_id(82) , :mrt_line => MrtLine.find_by_id(3))
+LocationMrtLineship.create(:location => Location.find_by_id(83) , :mrt_line => MrtLine.find_by_id(5))
+LocationMrtLineship.create(:location => Location.find_by_id(84) , :mrt_line => MrtLine.find_by_id(3))
 
 puts "Relationships between Location and MrtLine have been created~"
 
-90.times do 
-  Umbrella.create!(:umbrella_holder_type => "Location", :umbrella_holder_id => "1",
-                   :umbrella_number => SecureRandom.hex(10))
-end
+
 Location.all.each do |location|
-  10.times do
+  5.times do
     Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => location.id,
                       :umbrella_number => SecureRandom.hex(10))
   end
 end
+
+95.times do 
+  Umbrella.create!(:umbrella_holder_type => "Location", :umbrella_holder_id => Location.last.id,
+                   :umbrella_number => SecureRandom.hex(10))
+end
+
 puts "There are now #{Umbrella.count} rows in the umbrellas table"
 
