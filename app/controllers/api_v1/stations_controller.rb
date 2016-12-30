@@ -3,11 +3,11 @@ class ApiV1::StationsController < ApiController
 
   def index
     @locations = Location.includes(:umbrellas , :mrt_lines).all
-    # render :json => @locations
+    render "index.json.jbuilder", :status => 200
   end
 
   def show
     @location = Location.find(params[:id])
-    render :json => @location
+    render "show.json.jbuilder", :status => 200
   end
 end
