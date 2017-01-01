@@ -5,6 +5,8 @@ class Umbrella < ApplicationRecord
 
   has_many :rent_histories
 
+  belongs_to :ad_case, :optional => true
+
   scope :in_users, -> { where(:umbrella_holder_type => :User) }
   scope :in_stations, -> { where(:umbrella_holder_type => :Location) }
 

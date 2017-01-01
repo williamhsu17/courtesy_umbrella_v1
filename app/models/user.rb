@@ -24,6 +24,7 @@ class User < ApplicationRecord
     station.umbrella_count -= 1
 
     umbrella.umbrella_holder = self
+    umbrella.rent_count += 1
     umbrella_log.user = self
 
     if umbrella.save

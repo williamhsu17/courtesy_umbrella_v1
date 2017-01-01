@@ -1,0 +1,29 @@
+<h1>客戶<%= @enterprise.name %>的廣告紀錄</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">ad case id</th>
+      <th class="text-center">ad name</th>
+      <th class="text-center">ad case description</th>
+      <th class="text-center">雨傘數量</th>
+      <th class="text-center">清單</th>
+      <th class="text-center">總次數</th>
+      <th class="text-center">執行金額</th>
+      <th class="text-center">ppc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ad_cases.each do |ac| %>
+      <tr>
+        <td class="text-center"><%= ac.id %></td>
+        <td><%= ac.name %></td>
+        <td><%= simple_format(ac.description) %></td>
+        <td class="text-center"><%= ac.umbrellas.size %></td>
+        <td width = 20%><%= simple_format(ac.umbrellas.ids.to_s) %></td>
+        <td class="text-center"><%= ac.umbrella_use_count %></td>
+        <td class="text-center"><%= ac.case_amount %></td>
+        <td class="text-center"><%= ac.pay_per_use %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

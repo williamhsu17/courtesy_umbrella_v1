@@ -1,0 +1,24 @@
+<h1>廣告企業客戶</h1>
+
+<table class="table tabale-striped">
+  <thead>
+    <tr>
+      <th class="text-center">id</th>
+      <th class="text-center">企業名稱</th>
+      <th class="text-center">active ad case</th>
+      <th class="text-center">企業ad case數量</th>
+      <th class="text-center">加入日期</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @enterprises.each do |e| %>
+      <tr>
+        <td class="text-center"><%= e.id %></td>
+        <td><%= e.name %></td>
+        <td class="text-center"><%= e.active_ad_cases.size %></td>
+        <td class="text-center"><%= e.ad_cases.size %></td>
+        <td class="text-center"><%= e.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

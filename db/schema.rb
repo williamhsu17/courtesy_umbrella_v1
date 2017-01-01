@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101081722) do
+ActiveRecord::Schema.define(version: 20170101133840) do
+
+  create_table "ad_cases", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "enterprise_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_active",     default: true
+    t.integer  "case_amount",   default: 0
+  end
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +76,6 @@ ActiveRecord::Schema.define(version: 20170101081722) do
   end
 
   create_table "umbrellas", force: :cascade do |t|
-    t.integer  "enterprise_id"
     t.integer  "umbrella_holder_id",   default: 1
     t.string   "umbrella_holder_type", default: "Location"
     t.datetime "created_at",                                null: false
@@ -74,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170101081722) do
     t.text     "description"
     t.integer  "rent_count",           default: 0
     t.string   "umbrella_number"
-    t.index ["enterprise_id"], name: "index_umbrellas_on_enterprise_id"
+    t.integer  "ad_case_id"
     t.index ["umbrella_holder_id", "umbrella_holder_type"], name: "index_umbrellas_on_umbrella_holder_id_and_umbrella_holder_type"
   end
 
