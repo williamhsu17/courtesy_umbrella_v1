@@ -1,48 +1,40 @@
-<div class="container">
-  <div class="row">
-    <h1>customer umbrella operation</h1>
-    <h4>scan an umbrella here</h4>
+<h1>雨傘租借</h1>
 
-    <h4>current umbrella</h4>
-    <% if @umbrella.nil? %>
-      <%= form_tag borrow_umbrellas_path, :method => :post do %>
-        <%= number_field_tag :umbrella_number %>
-        <%= submit_tag "借雨傘" %>
-      <% end %>
-    <% else %>
-      <p>目前借出的雨傘id：<%= @umbrella.id %></p>
+<div class="input_section">
+  <% if @umbrella.nil? %>
+    <h4>請在此掃描雨傘上的QR-Code，或是輸入雨傘id</h4>
+    <%= form_tag borrow_umbrellas_path, :method => :post do %>
+      <%= number_field_tag :umbrella_number %>
+      <%= submit_tag "借雨傘", :class => "btn btn-success" %>
     <% end %>
-  </div>
+  <% else %>
+    <p>目前借出的雨傘id：<%= @umbrella.id %></p>
+  <% end %>
 </div>
-
-<div class="container">
-  <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-center">id</th>
-          <th class="text-center">起站</th>
-          <th class="text-center">start time</th>
-          <th class="text-center">迄站</th>
-          <th class="text-center">end time</th>
-          <th class="text-center">duration</th>
-          <th class="text-center">金額</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @my_umb_log.each do |u| %>
-          <tr>
-            <td class="text-center"><%= u.id %></td>
-            <td class="text-center"><%= u.start_location.name %></td>
-            <td class="text-center"><%= distance_of_time_in_words(Time.now, u.start_time, include_seconds: true) %></td>
-            <td class="text-center"><%= u.end_location.try(:name) %></td>
-            <td class="text-center"><%= (distance_of_time_in_words(Time.now - u.end_time)) if u.end_time %></td>
-            <td class="text-center"><%= (distance_of_time_in_words(u.end_time, u.start_time, include_seconds: true)) if u.end_time %></td>
-            <td class="text-center"><%= u.amount %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">id</th>
+      <th class="text-center">起站</th>
+      <th class="text-center">start time</th>
+      <th class="text-center">迄站</th>
+      <th class="text-center">end time</th>
+      <th class="text-center">duration</th>
+      <th class="text-center">金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @my_umb_log.each do |u| %>
+      <tr>
+        <td class="text-center"><%= u.id %></td>
+        <td class="text-center"><%= u.start_location.name %></td>
+        <td class="text-center"><%= distance_of_time_in_words(Time.now, u.start_time, include_seconds: true) %></td>
+        <td class="text-center"><%= u.end_location.try(:name) %></td>
+        <td class="text-center"><%= (distance_of_time_in_words(Time.now - u.end_time)) if u.end_time %></td>
+        <td class="text-center"><%= (distance_of_time_in_words(u.end_time, u.start_time, include_seconds: true)) if u.end_time %></td>
+        <td class="text-center"><%= u.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 

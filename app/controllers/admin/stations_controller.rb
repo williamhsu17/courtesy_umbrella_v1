@@ -1,5 +1,5 @@
 class Admin::StationsController < ApplicationController
-  layout "admin"
+  layout "admin", :except => [:list, :show]
 
   def index
     @stations = Location.includes(:umbrellas , :mrt_lines)
@@ -46,21 +46,15 @@ class Admin::StationsController < ApplicationController
     @total_umbrellas_on_mrt_lines = t
     @good_umbrellas_count = t - b
     @bad_umbrellas_percentage = (100 * b/t).to_i
-
-
-
-
-
-
-
-
     # @bad_umbrellas_count = Umbrella.includes(:locations).where('rent_count > ?', 10)
     # a = @bad_umbrellas.count
     # @good_umbrellas_count = Umbrella.includes(:locations).where('rent_count <= ?', 10)
     # b = @good_umbrellas.count
     # t = a + b
     # @bad_umbrellas_percentage = (100 * a/t).to_i
+  end
 
+  def list
 
   end
 

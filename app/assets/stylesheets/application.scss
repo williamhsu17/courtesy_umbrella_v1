@@ -3,3 +3,47 @@
 @import "admin/umbrellas.scss";
 @import "admin/stations.scss";
 @import "admin/users.scss";
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+
+html, body, .container-fluid, .row {
+    height: 100%;
+    padding: 0;
+}
+
+.w_sidebar {
+  background-color: #93c993;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: block;
+  .set_title {
+    padding-top: 5px;
+    font-weight: 400;
+    font-size: 32px;
+    text-decoration: none;
+    position: relative;
+    img {
+      display: inline-block;
+      height: 40px;
+    }
+    span {
+      font-family: 'cwTeXYen', sans-serif;
+      display: inline-block;
+      position: absolute;
+      padding-left: 10px;
+      width: 180px;
+      color: #444;
+    }
+  }
+}
+.topbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #999;
+  margin-bottom: 10px;
+}
+.input_section {
+  margin-bottom: 40px;
+}

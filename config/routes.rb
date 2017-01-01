@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'enterprise/name:string'
+  end
+
+  namespace :admin do
+    get 'enterprise/description:text'
+  end
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :umbrellas  do
@@ -13,6 +21,7 @@ Rails.application.routes.draw do
     resources :stations do
       collection do
         post :return
+        get :list
       end
     end
   end

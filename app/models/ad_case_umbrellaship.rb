@@ -1,0 +1,2 @@
+class AdCaseUmbrellaship < ApplicationRecord
+end

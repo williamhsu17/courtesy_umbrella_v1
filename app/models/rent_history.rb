@@ -23,12 +23,22 @@ class RentHistory < ApplicationRecord
 
   def amount_to_charge
     duration = self.duration
-    if duration <= 8
+    if duration <= 0.01
       self.amount = 10
-    elsif duration <= 24
+    elsif duration <= 0.05
       self.amount = 20
-    else
+    elsif duration <= 0.1
       self.amount = 30
+    elsif duration <= 0.5
+      self.amount = 40
+    elsif duration <= 1
+      self.amount = 50
+    elsif duration <= 8
+      self.amount = 60
+    elsif duration <= 12
+      self.amount = 70
+    else
+      self.amount = 90
     end
   end
 

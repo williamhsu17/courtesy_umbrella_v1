@@ -9,16 +9,24 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
-          <% if current_user %>
-            <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-            <%= link_to('修改密碼', edit_registration_path(:user)) %>
-          <% else %>
-            <%= link_to('註冊', new_registration_path(:user)) %> |
-            <%= link_to('登入', new_session_path(:user)) %>
-          <% end %>
+        <div class="col-md-2 w_sidebar">
+          <a class="set_title" href="#"><img src="/Umbrella.png" alt="logo"><span>傘傘愛</span></a>
+          <h4>公共雨傘出租系統</h4>
+        </div>
+        <div class="col-md-10 topbar col-md-offset-2 content">
+          <div class="login_menu pull-right">
+            <% if current_user %>
+              <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+              <%= link_to('修改密碼', edit_registration_path(:user)) %>
+            <% else %>
+              <%= link_to('註冊', new_registration_path(:user)) %> |
+              <%= link_to('登入', new_session_path(:user)) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-10 col-md-offset-2 content">
           <% if flash[:notice].present? %>
             <div class="alert alert-success" role="alert">
               <%= flash[:notice] %>
@@ -30,8 +38,10 @@
             </div>
           <% end %>
         </div>
+        <div class="col-md-10 col-md-offset-2 content">
+          <%= yield %>
+        </div>
       </div>
     </div>
-    <%= yield %>
   </body>
 </html>

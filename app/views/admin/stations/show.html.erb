@@ -1,46 +1,29 @@
-<div class="container">
-  <div class="row">
-    <h1>Station:<%= @station.name %></h1>
+<h1>目前站點:<%= @station.name %></h1>
 
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>進站時間</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @umbrellas.each do |umbrella| %>
-          <tr>
-            <td><%= umbrella.id %></td>
-            <td><%= umbrella.updated_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= form_tag return_admin_stations_path(:location_id => params[:id]), :method => :post do %>
-      <%= number_field_tag :umbrella_number %>
-      <%= submit_tag "歸還雨傘" %>
-    <% end %>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-center">id</th>
-          <th class="text-center">歸還時間</th>
-          <th class="text-center">歸還人</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @umbrellas_in_this_station.each do |u| %>
-          <tr>
-            <td class="text-center"><%= u.id %></td>
-            <td class="text-center"><%= u.rent_histories.last.try(:end_time) %></td>
-            <td class="text-center"><%= u.rent_histories.last.try(:user).try(:email) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class="input_section">
+  <h4>如要歸還雨傘，請在此機台上掃描雨傘上的QR-Code，或是輸入雨傘id</h4>
+  <%= form_tag return_admin_stations_path(:location_id => params[:id]), :method => :post do %>
+    <%= number_field_tag :umbrella_number %>
+    <%= submit_tag "歸還雨傘", :class => "btn btn-success" %>
+  <% end %>
 </div>
+
+<h4>目前站內雨傘</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">id</th>
+      <th class="text-center">進站時間</th>
+      <th class="text-center">歸還使用者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @umbrellas_in_this_station.each do |u| %>
+      <tr>
+        <td class="text-center"><%= u.id %></td>
+        <td class="text-center"><%= u.updated_at || u.rent_histories.last.try(:end_time) %></td>
+        <td class="text-center"><%= u.rent_histories.last.try(:user).try(:email) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
