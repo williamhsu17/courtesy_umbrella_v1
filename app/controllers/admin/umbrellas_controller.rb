@@ -3,8 +3,18 @@ class Admin::UmbrellasController < ApplicationController
 
   def index
     # @locations = Location.all
-    @umbrellas = Umbrella.all
-    @umbrellas = @umbrellas.includes(:umbrella_holder)
+    @umbrellas = Umbrella.all.order('id DESC')
+    # @umbrellas = @umbrellas.includes(:umbrella_holder).order('id DESC')
+    if params[:line_number]
+      @umbrellas = @umbrellas.in_stations 
+      # @umbrellas = @umbrellas.where( :mrt_lines => { :line_code =>  params[:line_number] } )
+      @mrtline_number = MrtLine.where(:line_code => params[:line_number]).first.locations.pluck(:id)
+      @umbrellas = @umbrellas.in_stations.where(:umbrella_holder_id => @mrtline_number)
+    elsif params[:in_rent]
+      @umbrellas = @umbrellas.in_users
+    end
+    @umbrellas = @umbrellas.page(params[:page]).per(18)
+
 
     # @umbrellas_in_renting = Umbrella.in_users
     # @umbrellas_in_station = Umbrella.in_stations

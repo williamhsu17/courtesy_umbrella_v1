@@ -1,12 +1,12 @@
 
 <div class="col-md-12 line-switch">
   <li> <%= link_to "全線" %> </li>
-  <li> <%= link_to "文湖線" %></p> </li>
-  <li> <%= link_to "淡水信義線" %> </li>
-  <li> <%= link_to "松山新店線" %> </li>
-  <li> <%= link_to "中和新蘆線" %> </li>
-  <li> <%= link_to "板南線" %> </li>
-  <li> <%= link_to "借出中" %> </li>
+  <li> <%= link_to "文湖線" , admin_umbrellas_path(:line_number => '1')  %></p> </li>
+  <li> <%= link_to "淡水信義線" , admin_umbrellas_path(:line_number => '2')  %> </li>
+  <li> <%= link_to "松山新店線" , admin_umbrellas_path(:line_number => '3')  %> </li>
+  <li> <%= link_to "中和新蘆線" , admin_umbrellas_path(:line_number => '4')  %> </li>
+  <li> <%= link_to "板南線" , admin_umbrellas_path(:line_number => '5')  %> </li>
+  <li> <%= link_to "借出中", admin_umbrellas_path(:in_rent => '1') %> </li>
 </div>
 <div class="data-editor col-md-12">
   <li class="right">
@@ -37,10 +37,9 @@
       <th width="10%">目前<br>所在位置</th>
       <th width="15%">系統<br>登錄日期</th>
       <th width="10%">租借次數</th>
-
       <th width="10%">傘況</th>
       <th width="10%">最近一次<br>出借時間</th>
-      <th width="10%">使用者ID</th>
+      <th width="10%">站點ID/使用者ID</th>
       <th width="10%" class="remark">備註</th>
     </tr>
   </thead>
@@ -49,14 +48,26 @@
       <tr>
         <td><%= sprintf '%06d', umbrella.id %></td>
         <td><%= umbrella.umbrella_number %></td>
-        <td><%= umbrella.umbrella_holder.try(:name) %></td>
+        <td class="umbrella_holder"><%= who_owns_it_now(umbrella) %></td>
         <td><%= umbrella.created_at %></td>
         <td><%= umbrella.rent_count %></td>
-        <td><%= umbrella.rent_count %></td>
+        <td><%= umbrella_status(umbrella) %></td>
         <td></td>
-        <td><%= umbrella.umbrella_holder_id%></td>
+        <td><%= umbrella.umbrella_holder_id %></td>
         <td class="remark"></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div class="paginate"><%= paginate @umbrellas %></div>
+<script> 
+
+$('.umbrella_holder').each(function(i) {
+  if ($(this).text() == "租借中"){
+    $(this).css('color' , 'red');
+  }
+});
+
+
+
+</script>

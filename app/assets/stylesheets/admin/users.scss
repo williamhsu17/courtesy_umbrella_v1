@@ -8,7 +8,17 @@
     table{
       border: 1px solid #979797;
       margin-bottom: 0;
-
+      tr.header{
+        font-size: 14px;
+        line-height: 35px;
+        height: 35px;
+        text-align: center;
+        background-color: #EFEFEF;
+        border-bottom: 1px solid #EFEFEF;
+      }
+    }
+    a{
+      table{
         tr{
           td.rent-tag{
 
@@ -30,35 +40,37 @@
         tr.draw-line{
           border-bottom: 1px solid #EFEFEF;
         }
-        tr.header{
-          font-size: 14px;
-          line-height: 35px;
-          height: 35px;
-          text-align: center;
-          background-color: #EFEFEF;
-        }
+        
         tr.top{
+          text-decoration: none;
           td{
             font-size: 14px;
             padding: 10px 20px 0 25px;
+            text-decoration: none; 
+            color: black;
           }
           
         }
         tr.middle{
+          text-decoration: none;
           td{
             padding: 5px 20px 5px 25px;
             font-size:13px;
+            text-decoration: none; 
+            color: black;
           }
           
         }
         tr.down{
+          text-decoration: none;
           td{
             padding: 5px 20px 12px 25px;
             font-size:13px;
+            text-decoration: none; 
+            color: black;
           } 
         }
-      
-      
+      }
     }
     
 }

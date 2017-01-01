@@ -1,128 +1,58 @@
-
-
-
-    <div class="user col-md-12">
-      <div id="user-list" class="col-md-3">
-        <div class="user-list">
-          <table class="talbe border-collapse col-md-12">
-            <tr class="draw-line header">
-              <td colspan="2">所有使用者</td>
-            </tr>
-            <% @users.each do |user|%>
-            <tr class="top">
-              <td>ID: <%= sprintf '%06d', user.id %></td>
-              <td class="rent-tag">
-              <% unless user.umbrella.blank? %>
-                <li class="rent-tag">
-                  租借中
-                </li>
-              <% end %>
-              </td>
-            </tr>
-            <tr class="middle">
-              <td colspan="2"> E-mail: <%=user.email %></td>
-            </tr>
-            <tr class="draw-line down">
-              <td colspan="2"> 租借時間： </td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-        paginate!!!
-      </div>
-      <div class="data-editor col-md-9">
-        <li class="right">
-          <div>
-            <p>
-              <%= link_to "#" do %> 
-              <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
-              <% end %>
-            </p>
-          </div>
-        </li>
-        <li class="right">
-          <div class="circle">
-            <p>
-              <%= link_to "#" do %> 
-              <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
-              <% end %>
-            </p>
-          </div>
-        </li>  
-      </div>
-      <div id="user-informaion" class="col-md-9">
-        <div class="clearfix"></div>
-        <div id="user-profile">
-          <li class="account_create_time">帳號成立時間： 2011/12/22</li>
-          <div class="clearfix"></div>
-          <div class="user_id col-md-12">
-            <li> 使用者ID: 000001</li>
-
+<div class="user col-md-12">
+  <div id="user-list" class="col-md-3">
+    <div class="user-list">
+      <table class="talbe border-collapse col-md-12">
+        <tr class="draw-line header">
+          <td colspan="2">所有使用者</td>
+        </tr>
+      </table>
+      <% @users.each do |user|%>
+        <%= link_to admin_user_path(user) do%>
+        <table class="col-md-12">
+          <tr class="top">
+            <td>ID: <%= sprintf '%06d', user.id %></td>
+            <td class="rent-tag">
+            <% unless user.umbrella.blank? %>
               <li class="rent-tag">
                 租借中
               </li>
-
-          </div>
-          <div class="table">
-            <table class="table table-bordered">
-              <tr>
-                <td class="left">手機</td>
-                <td class="right">0912345678</td>
-              </tr>
-              <tr>
-                <td>e-mail</td>
-                <td>xxxx@xxxxxx</td>
-              </tr>
-            </table>
-            <table class="table table-bordered">
-              <tr>
-                <td class="left">信用卡號碼</td>
-                <td class="right">1234-1234-1234-1234</td>
-              </tr>
-              <tr>
-                <td>有效期限</td>
-                <td>04/18</td>
-              </tr>
-            </table>
-
-            <div class="clearfix"></div>
-          </div>
+            <% end %>
+            </td>
+          </tr>
+          <tr class="draw-line down">
+            <td colspan="2"> E-mail: <%=user.email %></td>
+          </tr>
+          <!-- <tr class="draw-line down">
+            <td colspan="2"> 租借時間： </td>
+          </tr> -->
+        </table>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="paginate"><%= paginate @users%></div>  
+  </div>
+  <div id="user_information_render" class>
+    <div class="data-editor col-md-9">
+      <li class="right">
+        <div>
+          <p>
+            <%= link_to "#" do %> 
+            <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
+            <% end %>
+          </p>
         </div>
-        <hr size="10">
-        <div id="rent-log">
-          <h4> 總計租借次數：</h4> 
-          <h4> 上次租借的雨傘編號： </h4> 
-          <div class="table">
-            <table class="table table-bordered">
-              <tr>
-                <td class="left">上次租借時間</td>
-                <td class="right">2016/12/XX</td>
-              </tr>
-              <tr>
-                <td>上次租借地點</td>
-                <td>XX站</td>
-              </tr>
-            </table>
-            <table class="table table-bordered">
-              <tr>
-                <td class="left">上次歸還時間</td>
-                <td class="right">2016/12/OO</td>
-              </tr>
-              <tr>
-                <td>上次歸還地點</td>
-                <td>OO站</td>
-              </tr>
-            </table>
-            <div class="clearfix"></div>
-          </div>
+      </li>
+      <li class="right">
+        <div class="circle">
+          <p>
+            <%= link_to "#" do %> 
+            <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
+            <% end %>
+          </p>
         </div>
-        <hr size="10">
-        <div id="user-description">
-          <h5>備忘：</h5>
-          <%= text_area_tag 'user-description', nil, rows: 7, cols: 40 %>
-          <li><%= button_to 'OK'%></li> 
-          <li><%= button_to 'Cancel'%></li> 
-        </div>  
-      </div>
-    </div> 
+      </li>  
+    </div>
+    
+  </div>
+</div> 
     
