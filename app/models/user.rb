@@ -16,8 +16,12 @@ class User < ApplicationRecord
     end
 
     umbrella_log = umbrella.rent_histories.new
-    umbrella_log.start_location = umbrella.umbrella_holder
+    station = umbrella.umbrella_holder
+
+    umbrella_log.start_location = station
     umbrella_log.start_time = Time.now
+
+    station.umbrella_count -= 1
 
     umbrella.umbrella_holder = self
     umbrella_log.user = self
@@ -25,6 +29,7 @@ class User < ApplicationRecord
     if umbrella.save
       umbrella_log.is_returned = false
       umbrella_log.save!
+      station.save!
       return :success
     else
       return :error

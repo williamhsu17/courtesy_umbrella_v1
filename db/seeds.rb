@@ -78,10 +78,16 @@ Location.all.each do |location|
   end
 end
 
-95.times do 
+95.times do
   Umbrella.create!(:umbrella_holder_type => "Location", :umbrella_holder_id => Location.last.id,
                    :umbrella_number => SecureRandom.hex(10))
 end
 
 puts "There are now #{Umbrella.count} rows in the umbrellas table"
+
+Location.pluck(:id).each do |i|
+  l = Location.find(i)
+  l.umbrella_count = l.umbrellas.size
+  l.save!
+end
 

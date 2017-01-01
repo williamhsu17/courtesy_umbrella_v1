@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229013447) do
+ActiveRecord::Schema.define(version: 20170101081722) do
 
   create_table "enterprises", force: :cascade do |t|
     t.string   "name"
@@ -35,10 +35,11 @@ ActiveRecord::Schema.define(version: 20161229013447) do
     t.integer  "exit_number"
     t.integer  "longitude"
     t.integer  "latitude"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "station_number1"
     t.string   "station_number2"
+    t.integer  "umbrella_count",  default: 0
     t.index ["station"], name: "index_locations_on_station"
   end
 

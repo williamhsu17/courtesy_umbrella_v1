@@ -4,7 +4,7 @@ class Admin::StationsController < ApplicationController
   def index
     @stations = Location.includes(:umbrellas , :mrt_lines)
     if params[:line_number]
-    @stations = @stations.where( :mrt_lines => { :line_code =>  params[:line_number] } )
+      @stations = @stations.where( :mrt_lines => { :line_code =>  params[:line_number] } )
     end
     @stations = @stations.sort {|x,y| x.umbrellas.count <=> y.umbrellas.count }
     @stations_with_paginate = Kaminari.paginate_array( @stations ).page(params[:page]).per(15)
@@ -18,9 +18,9 @@ class Admin::StationsController < ApplicationController
     #   else
     #     x = x
     #   end
-    # end 
+    # end
     @stations_need_umbrellas_count = x
-    y = @stations.size    
+    y = @stations.size
     @stations_need_umbrellas_ratio = (100*x/y).to_i
 
     # @stations_need_umbrellas = @stations.where({ 'umbrellas.size < ?' , 10 })
@@ -38,7 +38,7 @@ class Admin::StationsController < ApplicationController
       # end
     end
     @bad_umbrellas_count = b
-    
+
     t = 0
     @stations.each do |s|
       t += s.umbrellas.count

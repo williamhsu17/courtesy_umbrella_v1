@@ -12,7 +12,10 @@ class Location < ApplicationRecord
     umbrella_log.end_time = Time.now
     umbrella_log.amount_to_charge
 
+    self.umbrella_count +=1
+
     if umbrella.save
+      self.save!
       umbrella_log.save!
       return :success
     else
