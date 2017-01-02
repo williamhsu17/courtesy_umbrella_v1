@@ -15,3 +15,12 @@ module Admin::UmbrellasHelper
     end
   end
 end
+
+def Umbrella_last_rent_time(umbrella)
+    last_time_rent_data = RentHistory.where(:umbrella_id => umbrella.id).last
+    if last_time_rent_data == nil
+      return "-"
+    else
+      return last_time_rent_data.created_at.strftime("%Y-%m-%d %H:%M:%S")
+    end
+end

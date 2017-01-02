@@ -19,19 +19,19 @@
             <% end %>
             </td>
           </tr>
-          <tr class="draw-line down">
-            <td colspan="2"> E-mail: <%=user.email %></td>
-          </tr>
           <!-- <tr class="draw-line down">
-            <td colspan="2"> 租借時間： </td>
+            <td colspan="2"> E-mail: <%=user.email %></td>
           </tr> -->
+          <tr class="draw-line down">
+            <td colspan="2"> 租借時間： <%= user_last_rent_time(user) %> </td>
+          </tr>
         </table>
         <% end %>
       <% end %>
     </div>
     <div class="paginate"><%= paginate @users%></div>  
   </div>
-  <div id="user_information_render" class>
+  <div id="user_information_render">
     <div class="data-editor col-md-9">
       <li class="right">
         <div>
@@ -50,6 +50,17 @@
             <% end %>
           </p>
         </div>
+      </li>
+      <li class="search_bar right">
+        <div id="search_box">
+          <%= form_tag admin_users_path, :method => :get do %>
+            <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字...', :class=>"form-control"%>
+            <label for="mySubmit" class="btn"> 
+              <span class="glyphicon btn-glyphicon glyphicon-search text-muted"></span> 
+            </label>
+            <input id="mySubmit" type="submit" value="Go" class="hidden" />
+          <% end %>
+        </div>      
       </li>  
     </div>
     <div id="user-informaion" class="col-md-9">
@@ -79,11 +90,11 @@
           <table class="table table-bordered">
             <tr>
               <td class="left">信用卡號碼</td>
-              <td class="right">1234-1234-1234-1234</td>
+              <td class="right"><%= 4.times.map{rand(10)}.join %>-<%= 4.times.map{rand(10)}.join %>-XXXX-XXXX</td>
             </tr>
             <tr>
               <td>有效期限</td>
-              <td>04/18</td>
+              <td><%= sprintf '%02d', rand(1..12) %>/<%= sprintf '%02d', rand(17..22) %> </td>
             </tr>
           </table>
           <div class="clearfix"></div>
@@ -91,27 +102,27 @@
       </div>
       <hr size="10">
       <div id="rent-log">
-        <h4> 總計租借次數：</h4> 
-        <h4> 上次租借的雨傘編號： </h4> 
+        <h4> 總計租借次數：<%= @user_umbrella_usage_amount %> </h4> 
+        <h4> 上次租借的雨傘編號：<%= @last_rent_umbrella_id %> </h4> 
         <div class="table">
           <table class="table table-bordered">
             <tr>
               <td class="left">上次租借時間</td>
-              <td class="right">2016/12/XX</td>
+              <td class="right"><%= @last_rent_start_time %></td>
             </tr>
             <tr>
               <td>上次租借地點</td>
-              <td>XX站</td>
+              <td><%= @last_rent_start_location %></td>
             </tr>
           </table>
           <table class="table table-bordered">
             <tr>
               <td class="left">上次歸還時間</td>
-              <td class="right">2016/12/XX</td>
+              <td class="right"><%= @last_rent_end_time %></td>
             </tr>
             <tr>
               <td>上次歸還地點</td>
-              <td>OO站</td>
+              <td><%= @last_rent_end_location %></td>
             </tr>
           </table>
           <div class="clearfix"></div>
@@ -127,4 +138,3 @@
     </div>
   </div>
 </div> 
-    

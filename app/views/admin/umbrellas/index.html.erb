@@ -27,18 +27,29 @@
       </p>
     </div>
   </li>
+  <li class="search_bar right">
+    <div id="search_box">
+      <%= form_tag admin_umbrellas_path, :method => :get do %>
+        <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字...', :class=>"form-control"%>
+        <label for="mySubmit" class="btn"> 
+          <span class="glyphicon btn-glyphicon glyphicon-search text-muted"></span> 
+        </label>
+        <input id="mySubmit" type="submit" value="Go" class="hidden" />
+      <% end %>
+    </div>      
+  </li> 
 </div>
 
 <table id=umbrellas class=" table table-bordered col-md-12">
   <thead>
     <tr>
-      <th width="5%">雨傘<br>編號</th>
-      <th width="10%">安全<br>編碼</th>
-      <th width="10%">目前<br>所在位置</th>
-      <th width="15%">系統<br>登錄日期</th>
+      <th width="5%">雨傘編號</th>
+      <th width="10%">安全編碼</th>
+      <th width="10%">目前所在位置</th>
+      <th width="15%">系統登錄日期</th>
       <th width="10%">租借次數</th>
       <th width="10%">傘況</th>
-      <th width="10%">最近一次<br>出借時間</th>
+      <th width="10%">最近一次出借時間</th>
       <th width="10%">站點ID/使用者ID</th>
       <th width="10%" class="remark">備註</th>
     </tr>
@@ -48,11 +59,11 @@
       <tr>
         <td><%= sprintf '%06d', umbrella.id %></td>
         <td><%= umbrella.umbrella_number %></td>
-        <td class="umbrella_holder"><%= who_owns_it_now(umbrella) %></td>
-        <td><%= umbrella.created_at %></td>
+        <td class="umbrella_holder"><%= who_owns_it_now(umbrella) %></td> 
+        <td><%= umbrella.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= umbrella.rent_count %></td>
         <td><%= umbrella_status(umbrella) %></td>
-        <td></td>
+        <td><%= Umbrella_last_rent_time(umbrella) %></td>
         <td><%= umbrella.umbrella_holder_id %></td>
         <td class="remark"></td>
       </tr>
@@ -60,6 +71,8 @@
   </tbody>
 </table>
 <div class="paginate"><%= paginate @umbrellas %></div>
+
+
 <script> 
 
 $('.umbrella_holder').each(function(i) {
@@ -67,7 +80,5 @@ $('.umbrella_holder').each(function(i) {
     $(this).css('color' , 'red');
   }
 });
-
-
 
 </script>
