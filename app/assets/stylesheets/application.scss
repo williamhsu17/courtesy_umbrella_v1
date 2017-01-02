@@ -12,7 +12,7 @@ html, body, .container-fluid, .row {
 }
 
 .w_sidebar {
-  background-color: #93c993;
+  background-color: #88CED7;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,6 +43,9 @@ html, body, .container-fluid, .row {
   padding-bottom: 10px;
   border-bottom: solid 1px #999;
   margin-bottom: 10px;
+}
+.content {
+  padding: 0;
 }
 .input_section {
   margin-bottom: 40px;

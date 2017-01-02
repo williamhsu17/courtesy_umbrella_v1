@@ -15,7 +15,7 @@
           <a class="set_title" href="#"><img src="/Umbrella.png" alt="logo"><span>傘傘愛</span></a>
           <h4>公共雨傘出租系統</h4>
         </div>
-        <div class="col-md-10 topbar col-md-offset-2 content">
+        <div class="col-md-10 topbar col-md-offset-2">
           <div class="login_menu pull-right">
             <% if current_user %>
               <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
@@ -26,7 +26,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-10 col-md-offset-2 content">
+        <div class="col-md-10 col-md-offset-2">
           <% if flash[:notice].present? %>
             <div class="alert alert-success" role="alert">
               <%= flash[:notice] %>

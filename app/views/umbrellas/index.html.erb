@@ -1,15 +1,16 @@
-<h1>雨傘租借</h1>
-
-<div class="input_section">
-  <% if @umbrella.nil? %>
-    <h4>請在此掃描雨傘上的QR-Code，或是輸入雨傘id</h4>
-    <%= form_tag borrow_umbrellas_path, :method => :post do %>
-      <%= number_field_tag :umbrella_number %>
-      <%= submit_tag "借雨傘", :class => "btn btn-success" %>
+<div class="col-md-12">
+  <h1>雨傘租借</h1>
+  <div class="input_section">
+    <% if @umbrella.nil? %>
+      <h4>請在此掃描雨傘上的QR-Code，或是輸入雨傘id</h4>
+      <%= form_tag borrow_umbrellas_path, :method => :post do %>
+        <%= number_field_tag :umbrella_number %>
+        <%= submit_tag "借雨傘", :class => "btn btn-success" %>
+      <% end %>
+    <% else %>
+      <p>目前借出的雨傘id：<%= @umbrella.id %></p>
     <% end %>
-  <% else %>
-    <p>目前借出的雨傘id：<%= @umbrella.id %></p>
-  <% end %>
+  </div>
 </div>
 <table class="table table-striped">
   <thead>
