@@ -15,12 +15,12 @@ class Admin::UmbrellasController < ApplicationController
     end
 
     if params[:keyword]
-      @umbrellas = Umbrella.where( [ "id like ? or rent_count like? umbrella_holder.name like?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"] )
+      @umbrellas = Umbrella.where( [ "id like ? or rent_count like? ", "%#{params[:keyword]}%", "%#{params[:keyword]}%"] )
     else 
       @umbrellas = @umbrellas
     end
 
-    @umbrellas = @umbrellas.page(params[:page]).per(18)    
+    @umbrellas = @umbrellas.page(params[:page]).per(15)    
 
 
 

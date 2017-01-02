@@ -40,7 +40,7 @@
       </ul>
     </nav>
     <div class="row">
-      <div class= "col-md-1 col-sidebar">
+      <div class= "col-sidebar col-md-1">
         <div class="sidebar">
           <li>
             <%= link_to admin_stations_path do %> 
@@ -66,15 +66,15 @@
             <%= link_to admin_users_path do %> 
               <table>
                 <tr>
-                  <td width=20% class="button_icon"><%= image_tag("User.png") %></td>
-                  <td width=80% class="button_text">使用者<br>列表</td>
+                  <td width=20% class="button_icon user_list"><%= image_tag("User.png") %></td>
+                  <td width=80% class="button_text user_list">使用者<br>列表</td>
                 </tr>
               </table>
             <% end %>
           </li>
         </div>
       </div>
-      <div class="col-md-11 col-main">
+      <div class="col-main col-md-11">
         <%= yield %>
       </div>
     </div>

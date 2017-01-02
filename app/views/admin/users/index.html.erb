@@ -23,7 +23,7 @@
             <td colspan="2"> E-mail: <%= user.email %></td>
           </tr> -->
           <tr class="draw-line down">
-            <td colspan="2"> 租借時間： <%= user_last_rent_time(user) %> </td>
+            <td colspan="2"> 租借時間：<%= user_last_rent_time(user) %> </td>
           </tr>
         </table>
         <% end %>
@@ -31,7 +31,7 @@
     </div>
     <div class="paginate"><%= paginate @users%></div>  
   </div>
-  <div id="user_information_render" class>
+  <div id="user_information_render">
     <div class="data-editor col-md-9">
       <li class="right">
         <div>

@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
     else 
       @users = User.all
     end
-    @users = @users.page(params[:page]).per(10)
+    @users = @users.page(params[:page]).per(8)
     # @users = User.joins(:rent_histories).merge(RentHistory.order(start_time: :desc))
     # @users = @users.page(params[:page]).per(10)
 
@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @users = User.all.page(params[:page]).per(10)
+    @users = User.all.page(params[:page]).per(8)
     # @users = User.joins(:rent_histories).merge(RentHistory.order(start_time: :desc))
     # @users = @users.page(params[:page]).per(10)
     @user = User.find(params[:id])
