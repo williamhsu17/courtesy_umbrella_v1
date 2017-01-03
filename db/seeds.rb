@@ -215,17 +215,21 @@ for i in 65..75
 end
 
 for i in 75..80
+  10.times do
     Umbrella.create!( :umbrella_holder_type => "Location", 
                       :umbrella_holder_id => i,
                       :umbrella_number => SecureRandom.hex(10),
                       :rent_count => "11" )
+  end
 end
 
 for i in 81..88
+  7.times do
     Umbrella.create!( :umbrella_holder_type => "Location", 
                       :umbrella_holder_id => i,
                       :umbrella_number => SecureRandom.hex(10),
                       :rent_count => "11" )
+  end
 end
 
 
