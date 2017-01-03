@@ -1,4 +1,5 @@
 class Admin::EnterprisesController < ApplicationController
+layout "admin"
 
   def index
     @enterprises = Enterprise.includes(:ad_cases, :active_ad_cases).all

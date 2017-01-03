@@ -1,6 +1,8 @@
 // Place all the styles related to the admin::users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//1440版本
 #user-list{
   // padding: 0 20px 0 25px;
   padding: 0 30px 0 0;
@@ -19,6 +21,7 @@
     }
     a{
       table{
+        margin-top: 0;
         tr{
           td.rent-tag{
 
@@ -44,6 +47,7 @@
         tr.top{
           text-decoration: none;
           td{
+            text-align: left;
             font-size: 14px;
             padding: 10px 20px 0 25px;
             text-decoration: none; 
@@ -58,6 +62,7 @@
             font-size:13px;
             text-decoration: none; 
             color: black;
+            text-align: left;
           }
           
         }
@@ -68,13 +73,50 @@
             font-size:13px;
             text-decoration: none; 
             color: black;
+            text-align: left;
           } 
         }
       }
     }
     
 }
+#user_information_render{
+  .data-editor{
+  float: right;
+  }
+  li.search_bar{
+    #search_box{
+      border-radius: 4px;
+      border: solid 1px #E4E4E4;
+      float: left;
+      input[type=text] {
+        width: 320px;
+        box-sizing: border-box;
+        border: 0;
+        font-size: 12px;
+        background-color: white;
+        display: inline-block;
+        background-position: 10px 10px; 
+        // background-repeat: no-repeat;
+        padding: 11px 0 11px 15px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        height: 16px;
+        float: left;
 
+      }
+      label{
+        display: inline-block;
+        float: left;
+        font-size: 14px;
+        padding: 1px 20px 1px 0;
+        border: 0;
+      }
+
+    }
+    
+  }
+}
 #user-informaion {
   border: 1px solid black;
   padding: 0 50px;
@@ -89,7 +131,7 @@
     }
     .user_id{
       margin-top: 15px;
-      margin-bottom: 26px;
+      margin-bottom: 23px;
       padding: 0;
       display: inline-block;
       li {
@@ -111,9 +153,9 @@
       }
     }
     .table{
-      margin: 26px 0 41px 0;
+      margin: 23px 0 35px 0;
       table{
-        margin:0 26px 0 0;
+        margin:0 23px 0 0;
         width: 300px;
         float: left;
         td.left{
@@ -127,14 +169,14 @@
     }
   }
   #rent-log{
-    margin-top: 41px;
+    margin-top: 35px;
     h4{
       margin: 0 0 7px 0;
     }
     .table{
-      margin: 28px 0 41px 0;
+      margin: 25px 0 35px 0;
       table{
-        margin:0 26px 0 0;
+        margin:0 22px 0 0;
         width: 300px;
         float: left;
       }
@@ -150,7 +192,7 @@
     }
   }
   #user-description{
-    margin: 26px 0 36px 0;
+    margin: 22px 0 35px 0;
     padding: 0;
     width: 300px;
     textarea{
@@ -168,3 +210,218 @@
     
   }
 }
+
+//Demo
+// #user-list{
+//   width: 35.6%;
+//   float: left;
+//   display: inline-block;
+//   padding: 0 30px 0 0;
+//   margin: 0;
+//     table{
+//       border: 1px solid #979797;
+//       margin-bottom: 0;
+//       tr.header{
+//         font-size: 28px;
+//         line-height: 56px;
+//         height: 56px;
+//         text-align: center;
+//         background-color: #EFEFEF;
+//         border-bottom: 1px solid #EFEFEF;
+//       }
+//     }
+//     a{
+//       table{
+//         tr{
+//           td.rent-tag{
+
+//             li.rent-tag{
+//               background-color: #8ACED6;
+//               padding: 0;
+//               width: 100px;
+//               height: 36px;
+//               line-height: 36px;
+//               text-align: center;
+//               float: right;
+//               border: 1px solid #EBF4F5;
+//               border-radius: 5px;
+//               font-size: 20px;
+//               color: #FFFFFF;
+//             }
+//           }
+//         }
+//         tr.draw-line{
+//           border-bottom: 1px solid #EFEFEF;
+//         }
+        
+//         tr.top{
+//           text-decoration: none;
+//           td{
+//             font-size: 22px;
+//             padding: 10px 20px 0 25px;
+//             text-decoration: none; 
+//             color: black;
+//           }
+          
+//         }
+//         tr.middle{
+//           text-decoration: none;
+//           td{
+//             padding: 5px 20px 5px 25px;
+//             font-size: 13px;
+//             text-decoration: none; 
+//             color: black;
+//           }
+          
+//         }
+//         tr.down{
+//           text-decoration: none;
+//           td{
+//             padding: 9px 20px 19px 25px;
+//             font-size: 21px;
+//             text-decoration: none; 
+//             color: black;
+//           } 
+//         }
+//       }
+//     }
+    
+// }
+// #user_information_render{
+//   width: 64.4%;
+//   float: left;
+//   display: inline-block;
+//   .data-editor{
+//     float: right;
+
+//     li.search_bar{
+//       #search_box{
+//         border-radius: 4px;
+//         border: solid 1px #E4E4E4;
+//         float: left;
+//         input[type=text] {
+//           width: 320px;
+//           box-sizing: border-box;
+//           border: 0;
+//           font-size: 20px;
+//           background-color: white;
+//           display: inline-block;
+//           background-position: 10px 10px; 
+//           // background-repeat: no-repeat;
+//           padding: 15px 0 15px 15px;
+//           -webkit-transition: width 0.4s ease-in-out;
+//           transition: width 0.4s ease-in-out;
+//           height: 30px;
+//           float: left;
+//         }
+//         label{
+//           display: inline-block;
+//           float: left;
+//           font-size: 18px;
+//           padding: 4px 20px 0 0;
+//           border: 0;
+//           // border-left: 1px solid #E4E4E4;
+//         }
+
+//       }
+      
+//     }
+//   }
+  
+// }
+// #user-informaion {
+//   margin-top: 10px;
+//   border: 1px solid black;
+//   padding: 0 25px;
+//   #user-profile{
+//     li.account_create_time{
+//       float: right;
+//       margin-top: 15px; 
+//       font-size: 18px;
+//     }
+//     .clearfix{
+//       clear: both;
+//     }
+//     .user_id{
+//       margin-top: 15px;
+//       margin-bottom: 26px;
+//       padding: 0;
+//       display: inline-block;
+//       li {
+//         font-size: 24px;
+//         line-height: 35px;
+//       }
+//       li.rent-tag{
+//         background-color: #8ACED6;
+//         padding: 0;
+//         width: 100px;
+//         height: 36px;
+//         line-height: 36px;
+//         text-align: center;
+//         margin-left: 25px;
+//         border: 1px solid #EBF4F5;
+//         border-radius: 5px;
+//         font-size: 20px;
+//         color: #FFFFFF;
+//       }
+//     }
+//     .table{
+//       margin: 26px 0 41px 0;
+//       font-size: 20px;
+//       table{
+//         margin:0 10px 0 0;
+//         width: 300px;
+//         float: left;
+//         td.left{
+//           width: 120px;
+//         }
+//         td.right{
+//           width: 180px;
+//         }
+//       }
+      
+//     }
+//   }
+//   #rent-log{
+//     margin-top: 41px;
+//     h4{
+//       margin: 0 0 7px 0;
+//     }
+//     .table{
+//       font-size: 20px;
+//       margin: 28px 0 41px 0;
+//       table{
+//         margin:0 26px 0 0;
+//         width: 280px;
+//         float: left;
+//       }
+//       td.left{
+//         width: 120px;
+//       }
+//       td.right{
+//         width: 180px;
+//       }
+//     }
+//     .clearfix{
+//       clear: both;
+//     }
+//   }
+//   #user-description{
+//     margin: 26px 0 36px 0;
+//     padding: 0;
+//     width: 280px;
+//     textarea{
+//       margin: 11px 0 7px 0;
+//     }
+//     li {
+//       float: right;
+
+//       input{
+//         width: 80px;
+//         height: 25px;
+//         margin-left: 15px;
+//       }
+//     }
+    
+//   }
+// }

@@ -14,7 +14,13 @@
     <% @enterprises.each do |e| %>
       <tr>
         <td class="text-center"><%= e.id %></td>
-        <td><%= e.name %></td>
+        
+        <td class="text-center">
+          <%= link_to admin_enterprise_path(e) do %>
+            <%= e.name %>
+          <% end %>
+        </td>
+        
         <td class="text-center"><%= e.active_ad_cases.size %></td>
         <td class="text-center"><%= e.ad_cases.size %></td>
         <td class="text-center"><%= e.created_at %></td>

@@ -19,19 +19,19 @@
             <% end %>
             </td>
           </tr>
-          <tr class="draw-line down">
-            <td colspan="2"> E-mail: <%=user.email %></td>
-          </tr>
-          <!-- <tr class="draw-line down">
-            <td colspan="2"> 租借時間： </td>
+          <!-- <tr class="down draw-line">
+            <td colspan="2"> E-mail: <%= user.email %></td>
           </tr> -->
+          <tr class="draw-line down">
+            <td colspan="2"> 租借時間：<%= user_last_rent_time(user) %> </td>
+          </tr>
         </table>
         <% end %>
       <% end %>
     </div>
     <div class="paginate"><%= paginate @users%></div>  
   </div>
-  <div id="user_information_render" class>
+  <div id="user_information_render">
     <div class="data-editor col-md-9">
       <li class="right">
         <div>
@@ -50,6 +50,17 @@
             <% end %>
           </p>
         </div>
+      </li>
+      <li class="search_bar right">
+        <div id="search_box">
+          <%= form_tag admin_users_path, :method => :get do %>
+            <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字...', :class=>"form-control"%>
+            <label for="mySubmit" class="btn"> 
+              <span class="glyphicon btn-glyphicon glyphicon-search text-muted"></span> 
+            </label>
+            <input id="mySubmit" type="submit" value="Go" class="hidden" />
+          <% end %>
+        </div>      
       </li>  
     </div>
     

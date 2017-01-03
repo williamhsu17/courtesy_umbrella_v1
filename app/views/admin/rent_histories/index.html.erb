@@ -42,42 +42,31 @@
 <table id=umbrellas class=" table table-bordered col-md-12">
   <thead>
     <tr>
-      <th width="7%">雨傘編號</th>
-      <th width="10%">安全編碼</th>
-      <th width="8%">目前位置</th>
-      <th width="15%">系統登錄日期</th>
-      <th width="10%">租借次數</th>
-      <th width="10%">傘況</th>
-      <th width="15%">最近一次出借時間</th>
+      <th width="10%">紀錄編號</th>
+      <th width="10%">雨傘編號</th>
       <th width="10%">使用者ID</th>
-      <th width="15%" class="remark">備註</th>
+      <th width="10%">起始站點</th>
+      <th width="15%">租借時間</th>
+      <th width="10%">歸還站點</th>
+      <th width="15%">歸還時間</th>
+      <th width="10%">本次收費</th>
+      <th width="10%" class="remark">備註</th>
     </tr>
-  </thead>
+  </thead>        
   <tbody>
-    <% @umbrellas.each do |umbrella|%>
+    <% @rent_histories.each do |rent|%>
       <tr>
-        <td><%= sprintf '%06d', umbrella.id %></td>
-        <td><%= umbrella.umbrella_number %></td>
-        <td class="umbrella_holder"><%= who_owns_it_now(umbrella) %></td> 
-        <td><%= umbrella.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= umbrella.rent_count %></td>
-        <td><%= umbrella_status(umbrella) %></td>
-        <td><%= Umbrella_last_rent_time(umbrella) %></td>
-        <td><%= umbrella_owner_id(umbrella) %></td>
+        <td><%= sprintf '%08d', rent.id %></td>
+        <td><%= sprintf '%06d', rent.umbrella_id %></td>
+        <td><%= sprintf '%06d', rent.user_id %></td>
+        <td><%= start_station_name(rent) %></td>
+        <td><%= rent.start_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= end_station_name(rent) %></td>
+        <td><%= rent.end_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= rent.amount %></td>
         <td class="remark"></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<div class="paginate"><%= paginate @umbrellas %></div>
-
-
-<script> 
-
-$('.umbrella_holder').each(function(i) {
-  if ($(this).text() == "租借中"){
-    $(this).css('color' , 'red');
-  }
-});
-
-</script>
+<div class="paginate"><%= paginate @rent_histories %></div>

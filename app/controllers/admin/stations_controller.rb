@@ -7,7 +7,7 @@ class Admin::StationsController < ApplicationController
       @stations = @stations.where( :mrt_lines => { :line_code =>  params[:line_number] } )
     end
     @stations = @stations.sort {|x,y| x.umbrellas.count <=> y.umbrellas.count }
-    @stations_with_paginate = Kaminari.paginate_array( @stations ).page(params[:page]).per(15)
+    @stations_with_paginate = Kaminari.paginate_array( @stations ).page(params[:page]).per(10)
 
     #ratio of stations where umbrella number less 10
     x = 0
