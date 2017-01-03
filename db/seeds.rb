@@ -271,17 +271,23 @@ puts "There are now #{Umbrella.count} rows in the umbrellas table"
 e = Enterprise.create!(:name => "ASUS", :description => "computer manufacture")
 ac = e.ad_cases.create!(:name => "new game station", :description => "fun", :is_active => false, :case_amount => 10000)
 5.times do
-  ac.umbrellas.create
+  ac.umbrellas.create( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => Location.last.id,
+                      :umbrella_number => SecureRandom.hex(10))
 end
 ac = e.ad_cases.create!(:name => "new transformer 3", :description => "pre launch commercial", :case_amount => 9000)
 5.times do
-  ac.umbrellas.create
+  ac.umbrellas.create( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => Location.last.id,
+                      :umbrella_number => SecureRandom.hex(10))
 end
 
 e = Enterprise.create!(:name => "Acer", :description => "computer manufacture")
 ac = e.ad_cases.create!(:name => "slim laptop", :description => "pre launch commercial", :case_amount => 10000)
 5.times do
-  ac.umbrellas.create
+  ac.umbrellas.create( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => Location.last.id,
+                      :umbrella_number => SecureRandom.hex(10))
 end
 
 Location.pluck(:id).each do |i|
