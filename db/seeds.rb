@@ -10,7 +10,7 @@ Location.destroy_all
 Umbrella.destroy_all
 MrtLine.destroy_all
 LocationMrtLineship.destroy_all
-
+# User.destroy_all
 
 require 'csv'
 
@@ -70,22 +70,200 @@ LocationMrtLineship.create(:location => Location.find_by_id(84) , :mrt_line => M
 
 puts "Relationships between Location and MrtLine have been created~"
 
-
-Location.all.each do |location|
-  5.times do
-    Umbrella.create!( :umbrella_holder_type => "Location", :umbrella_holder_id => location.id,
-                      :umbrella_number => SecureRandom.hex(10))
+# 文湖線
+for i in 1..15
+  10.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "5" )
   end
 end
 
-95.times do
+for i in 16..17
+  10.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+for i in 18..24
+  5.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+# 淡水信義線
+for i in 25..38
+  10.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "4" )
+  end
+end
+
+
+  8.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "39",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "6" )
+  end
+
+
+
+  2.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "40",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "6" )
+  end
+
+  6.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "40",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+
+
+for i in 41..44
+  8.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+
+for i in 45..50
+  7.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+
+# 松江新店線
+
+  3.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "51",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "2" )
+  end
+
+  7.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "51",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+
+
+for i in 52..53
+  5.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "1" )
+  end
+end
+
+
+  10.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "54",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+
+for i in 55..63
+  10.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+
+  6.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => "64",
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "4" )
+  end
+
+#中和新蘆線
+for i in 65..75
+  10.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "6" )
+  end
+end
+
+for i in 75..80
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+end
+
+for i in 81..88
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+end
+
+
+#板南線
+for i in 89..92
+  10.times do 
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "5" )
+  end
+end
+for i in 93..103
+  8.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "7" )
+  end
+end
+
+for i in 103..106
+  9.times do
+    Umbrella.create!( :umbrella_holder_type => "Location", 
+                      :umbrella_holder_id => i,
+                      :umbrella_number => SecureRandom.hex(10),
+                      :rent_count => "11" )
+  end
+end
+
+100.times do
   Umbrella.create!(:umbrella_holder_type => "Location", :umbrella_holder_id => Location.last.id,
                    :umbrella_number => SecureRandom.hex(10))
 end
 
 puts "There are now #{Umbrella.count} rows in the umbrellas table"
 
-puts "create an enterprise"
+
 e = Enterprise.create!(:name => "ASUS", :description => "computer manufacture")
 ac = e.ad_cases.create!(:name => "new game station", :description => "fun", :is_active => false, :case_amount => 10000)
 5.times do
@@ -107,4 +285,4 @@ Location.pluck(:id).each do |i|
   l.umbrella_count = l.umbrellas.size
   l.save!
 end
-
+puts "create an enterprise"

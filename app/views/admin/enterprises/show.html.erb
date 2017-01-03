@@ -16,10 +16,10 @@
     <% @ad_cases.each do |ac| %>
       <tr>
         <td class="text-center"><%= ac.id %></td>
-        <td><%= ac.name %></td>
-        <td><%= simple_format(ac.description) %></td>
+        <td class="text-center"><%= ac.name %></td>
+        <td class="text-center"><%= simple_format(ac.description) %></td>
         <td class="text-center"><%= ac.umbrellas.size %></td>
-        <td width = 20%><%= simple_format(ac.umbrellas.ids.to_s) %></td>
+        <td width= 20%><%= simple_format(ac.umbrellas.ids.to_s) %></td>
         <td class="text-center"><%= ac.umbrella_use_count %></td>
         <td class="text-center"><%= ac.case_amount %></td>
         <td class="text-center"><%= ac.pay_per_use %></td>

@@ -1,0 +1,72 @@
+<div class="col-md-12 line-switch">
+  <li> <%= link_to "全線" %> </li>
+  <li> <%= link_to "文湖線" , admin_umbrellas_path(:line_number => '1')  %></p> </li>
+  <li> <%= link_to "淡水信義線" , admin_umbrellas_path(:line_number => '2')  %> </li>
+  <li> <%= link_to "松山新店線" , admin_umbrellas_path(:line_number => '3')  %> </li>
+  <li> <%= link_to "中和新蘆線" , admin_umbrellas_path(:line_number => '4')  %> </li>
+  <li> <%= link_to "板南線" , admin_umbrellas_path(:line_number => '5')  %> </li>
+  <li> <%= link_to "借出中", admin_umbrellas_path(:in_rent => '1') %> </li>
+</div>
+<div class="data-editor col-md-12">
+  <li class="right">
+    <div>
+      <p>
+        <%= link_to "#" do %>
+        <span class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-muted"></span>
+        <% end %>
+      </p>
+    </div>
+  </li>
+  <li class="right">
+    <div class="circle">
+      <p>
+        <%= link_to "#" do %>
+        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>
+        <% end %>
+      </p>
+    </div>
+  </li>
+  <li class="search_bar right">
+    <div id="search_box">
+      <%= form_tag admin_umbrellas_path, :method => :get do %>
+        <%= text_field_tag "keyword", nil, placeholder: '請輸入關鍵字...', :class=>"form-control"%>
+        <label for="mySubmit" class="btn"> 
+          <span class="glyphicon btn-glyphicon glyphicon-search text-muted"></span> 
+        </label>
+        <input id="mySubmit" type="submit" value="Go" class="hidden" />
+      <% end %>
+    </div>      
+  </li> 
+</div>
+
+<table id=umbrellas class=" table table-bordered col-md-12">
+  <thead>
+    <tr>
+      <th width="10%">紀錄編號</th>
+      <th width="10%">雨傘編號</th>
+      <th width="10%">使用者ID</th>
+      <th width="10%">起始站點</th>
+      <th width="15%">租借時間</th>
+      <th width="10%">歸還站點</th>
+      <th width="15%">歸還時間</th>
+      <th width="10%">本次收費</th>
+      <th width="10%" class="remark">備註</th>
+    </tr>
+  </thead>        
+  <tbody>
+    <% @rent_histories.each do |rent|%>
+      <tr>
+        <td><%= sprintf '%08d', rent.id %></td>
+        <td><%= sprintf '%06d', rent.umbrella_id %></td>
+        <td><%= sprintf '%06d', rent.user_id %></td>
+        <td><%= start_station_name(rent) %></td>
+        <td><%= rent.start_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= end_station_name(rent) %></td>
+        <td><%= rent.end_time.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= rent.amount %></td>
+        <td class="remark"></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="paginate"><%= paginate @rent_histories %></div>
